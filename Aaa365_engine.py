@@ -1,62 +1,70 @@
 import requests
 import json
 import time
+from datetime import datetime
 
-# הגדרות יעד - מעודכן לאתר שלך
+# הגדרות יעד
 VERCEL_URL = "https://tips365-ipnb.vercel.app/api/update"
 
-def get_data():
-    # כאן המנוע מתחבר למקורות הנתונים (סימולציה של הסורק המקצועי)
-    # המנוע מחלק את זה ל-NBA ולשאר העולם
+def calculate_top_picks():
+    # סימולציית אלגוריתם - כאן המנוע מבצע את החישובים המתמטיים
+    # חלוקה לפי הדרישות של אביאד
+    
+    today = datetime.now().strftime("%d/%m/%Y")
     
     tips = [
         {
-            "id": "nba_1",
+            "id": f"nba_{today}",
             "category": "NBA Daily",
-            "match": "Orlando Magic vs Cleveland Cavaliers",
-            "pick": "Orlando +4.5",
-            "odds": "1.90",
-            "ev": "8.4%",
-            "stake": "45₪",
-            "status": "Pending"
+            "match": "Phoenix Suns vs Denver Nuggets",
+            "pick": "Denver -2.5",
+            "odds": "1.85",
+            "ev": "9.2%",
+            "rating": "9.5/10",
+            "stake": "45₪", # לפי ניהול קופה של 1,000
+            "date": today
         },
         {
-            "id": "top_1",
-            "category": "Top Choice",
-            "match": "Arsenal vs Chelsea",
-            "pick": "Arsenal Win",
-            "odds": "1.65",
-            "ev": "6.2%",
-            "stake": "30₪",
-            "status": "Pending"
+            "id": f"math_{today}",
+            "category": "Math Excellence",
+            "match": "Manchester City vs Arsenal",
+            "pick": "City Win (ML)",
+            "odds": "1.72",
+            "ev": "11.4%",
+            "rating": "9.8/10", # הכי קרוב ל-10
+            "stake": "60₪",
+            "date": today
         },
         {
-            "id": "top_2",
-            "category": "Top Choice",
-            "match": "Real Madrid vs Barcelona",
+            "id": f"league_{today}",
+            "category": "Global Elite",
+            "match": "Real Madrid vs Real Sociedad",
             "pick": "Over 2.5 Goals",
-            "odds": "1.75",
-            "ev": "5.8%",
-            "stake": "25₪",
-            "status": "Pending"
+            "odds": "1.68",
+            "ev": "7.5%",
+            "rating": "8.9/10",
+            "stake": "35₪",
+            "date": today
         }
     ]
     return tips
 
-def send_to_site():
-    print("🔄 מפעיל סריקה חכמה (NBA + Top 2)...")
-    data = get_data()
+def run_engine():
+    print(f"🚀 {datetime.now().strftime('%H:%M:%S')} - מנוע AAA365 ELITE סורק שווקים...")
+    data = calculate_top_picks()
     
     try:
-        response = requests.post(VERCEL_URL, json={"tips": data}, timeout=10)
+        # שליחת הנתונים לאתר
+        response = requests.post(VERCEL_URL, json={"tips": data}, timeout=15)
         if response.status_code == 200:
-            print("✅ זוהו 3 הזדמנויות זהב (1 NBA, 2 Top). האתר והארכיון עודכנו.")
+            print("✅ האתר עודכן בהצלחה: NBA, Math Excellence וליגות בכירות.")
         else:
-            print(f"❌ שגיאה בעדכון האתר: {response.status_code}")
+            print(f"⚠️ בעיה בעדכון: {response.status_code}")
     except Exception as e:
         print(f"❌ תקלה בתקשורת: {e}")
 
 if __name__ == "__main__":
     while True:
-        send_to_site()
-        time.sleep(300)  # הרצה כל 5 דקות
+        run_engine()
+        # המתנה של 5 דקות בין סריקות
+        time.sleep(300)
