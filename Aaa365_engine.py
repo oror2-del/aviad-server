@@ -4,7 +4,7 @@ import time
 
 # הגדרות מנוע העלית Aaa365
 CONFIG = {
-    "VERCEL_API": "https://tips365-ipnb.vercel.app/api/update",
+https://tips365-ipnb.vercel.app/api/update
     "BANKROLL": 1000,
     "MIN_EV": 0.05,  # מינימום 5% תוחלת רווח
     "KELLY_FRACTION": 0.2  # ניהול סיכונים שמרני (רבע קלי)
