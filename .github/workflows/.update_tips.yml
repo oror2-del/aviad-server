@@ -1,0 +1,25 @@
+name: Auto Update AAA365
+on:
+  schedule:
+    - cron: '0 7 * * *'  # בוקר (9:00 שעון ישראל)
+    - cron: '0 19 * * *' # ערב (21:00 שעון ישראל)
+  workflow_dispatch:
+
+jobs:
+  update-tips:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Update Content
+        run: |
+          echo "Updating AAA365 tips..."
+          # כאן נכניס בהמשך את הפקודה שמעדכנת את הקובץ index.html
+
+      - name: Commit Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -am "Daily Update AAA365" || echo "No changes to commit"
+          git push
