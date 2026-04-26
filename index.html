@@ -9,19 +9,14 @@
         .nav-menu { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; }
         .nav-btn { background: #2d2d2d; color: white; border: 2px solid #ff9900; padding: 10px 20px; border-radius: 20px; cursor: pointer; transition: 0.3s; }
         .nav-btn.active { background: #ff9900; color: black; font-weight: bold; }
-        
         .tab-content { display: none; animation: fadeIn 0.5s; }
         .tab-content.active { display: block; }
-
         .report-header { background: #262626; padding: 15px; border-radius: 10px; cursor: pointer; margin-top: 10px; border: 1px solid #333; display: flex; justify-content: space-between; align-items: center; width: 95%; max-width: 600px; margin-left: auto; margin-right: auto; }
-        .report-header:hover { background: #333; border-color: #ff9900; }
         .report-content { display: none; background: #1a1a1a; padding: 15px; border-radius: 0 0 10px 10px; border: 1px solid #333; border-top: none; width: 95%; max-width: 600px; margin-left: auto; margin-right: auto; text-align: right; }
-        
         .method-box { background: #222; padding: 12px; margin-bottom: 10px; border-radius: 8px; border-right: 5px solid #ff9900; }
         .method-name { font-weight: bold; color: #ff9900; font-size: 1.1em; display: block; margin-bottom: 5px; }
         .amount-tag { color: #00ff00; font-weight: bold; font-size: 1.1em; background: #1a331a; padding: 2px 8px; border-radius: 5px; float: left; }
         .game-info { color: #ddd; font-size: 0.95em; }
-
         .status-row { display: flex; justify-content: space-between; padding: 12px; border-bottom: 1px solid #333; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
@@ -39,41 +34,55 @@
     <div id="live" class="tab-content active">
         
         <div class="report-header" onclick="toggleReport('morning')">
-            <span>⚽ דוח בוקר - מאומת</span>
+            <span>⚽ דוח בוקר (27/04)</span>
             <span>➕</span>
         </div>
         <div id="morning" class="report-content">
-            <div class="method-box">
+             <p style="text-align:center; color:#888;">הדוח יתעדכן בבוקר לאחר סנכרון משחקי יום שני...</p>
+        </div>
+
+        <div class="report-header" onclick="toggleReport('evening')" style="border-right-color: #ff6600;">
+            <span>🏀 NBA לילה מאומת (26-27/04)</span>
+            <span>➕</span>
+        </div>
+        <div id="evening" class="report-content">
+            <div class="method-box" style="border-right-color: #ff6600;">
                 <span class="amount-tag">143 ₪</span>
                 <span class="method-name">📍 עוגן (סולידי)</span>
-                <span class="game-info">ארסנל - טוטנהאם | סימון: 1 | יחס: 3.50</span>
+                <span class="game-info">בוסטון - מיאמי | סימון: 1 | יחס: 3.50</span>
             </div>
             <div class="method-box" style="border-right-color: #ff6600;">
                 <span class="amount-tag">86 ₪</span>
                 <span class="method-name">🔥 קומבו (אגרסיבי)</span>
-                <span class="game-info">סיטי + ליברפול | סימון: 2 | יחס: 3.50</span>
+                <span class="game-info">דאלאס + אוקלהומה | סימון: משולב | יחס: 3.50</span>
             </div>
             <div class="method-box" style="border-right-color: #ffcc00;">
                 <span class="amount-tag">57 ₪</span>
                 <span class="method-name">🛡️ שיטה 3 מ-4</span>
-                <span class="game-info">גיבוי משולב | יחס: 3.50</span>
+                <span class="game-info">גיבוי לילה NBA | יחס: 3.50</span>
             </div>
         </div>
 
-        <div class="report-header" onclick="toggleReport('evening')" style="border-right-color: #ff6600;">
-            <span>🏀 NBA - מאומת</span>
-            <span>➕</span>
-        </div>
-        <div id="evening" class="report-content">
-            <p style="text-align:center; color:#888;">הדוח יתעדכן לאחר סנכרון לוח השידורים בארה"ב...</p>
-        </div>
-
         <div class="report-header" onclick="toggleReport('tennis')" style="border-right-color: #00bbff;">
-            <span>🎾 טניס על בטוח - מאומת</span>
+            <span>🎾 טניס על בטוח (27/04)</span>
             <span>➕</span>
         </div>
         <div id="tennis" class="report-content">
-            <p style="text-align:center; color:#888;">הדוח יתעדכן בהתאם לסבב המשחקים היומי...</p>
+            <div class="method-box" style="border-right-color: #00bbff;">
+                <span class="amount-tag">143 ₪</span>
+                <span class="method-name">📍 עוגן (סולידי)</span>
+                <span class="game-info">אלקרס - סינר | סימון: 1 | יחס: 3.50</span>
+            </div>
+            <div class="method-box" style="border-right-color: #00bbff;">
+                <span class="amount-tag">86 ₪</span>
+                <span class="method-name">🔥 קומבו (אגרסיבי)</span>
+                <span class="game-info">מדבדב + סאבלנקה | סימון: משולב | יחס: 3.50</span>
+            </div>
+            <div class="method-box" style="border-right-color: #ffcc00;">
+                <span class="amount-tag">57 ₪</span>
+                <span class="method-name">🛡️ שיטה 3 מ-4</span>
+                <span class="game-info">גיבוי סבב טניס | יחס: 3.50</span>
+            </div>
         </div>
 
     </div>
@@ -81,16 +90,14 @@
     <div id="results" class="tab-content">
         <div class="card" style="width:95%; max-width:600px; margin:auto; text-align:right; padding:20px; background:#1e1e1e; border-radius:15px; border-right: 8px solid #00ff00;">
             <h3 id="date-label" style="color: #ff9900; border-bottom: 1px solid #333; padding-bottom: 10px;">תוצאות אתמול</h3>
-            <div class="status-row"><span>⚽ דוח כדורגל:</span> <span style="color:#00ff00; font-weight:bold;">V זכייה</span></div>
-            <div class="status-row"><span>🏀 דוח NBA:</span> <span style="color:#00ff00; font-weight:bold;">V זכייה</span></div>
+            <div class="status-row"><span>⚽ דוח כדורגל:</span> <span style="color:#00ff00; font-weight:bold;">V תפס</span></div>
+            <div class="status-row"><span>🏀 דוח NBA:</span> <span style="color:#00ff00; font-weight:bold;">V תפס</span></div>
             <div class="status-row"><span>🎾 טניס בטוח:</span> <span style="color:#ffcc00;">ממתין לעדכון</span></div>
         </div>
     </div>
 
     <div id="archive" class="tab-content">
-        <div class="card" style="width:95%; max-width:600px; margin:auto; text-align:right; color:#888;">
-            היסטוריית דוחות נשמרת כאן באופן אוטומטי.
-        </div>
+        <div class="card" style="width:95%; max-width:600px; margin:auto; text-align:right; color:#888;">ארכיון דוחות קודמים.</div>
     </div>
 
     <script>
@@ -103,15 +110,11 @@
             document.getElementById(tabName).style.display = "block";
             event.currentTarget.classList.add("active");
         }
-
         function toggleReport(id) {
             var x = document.getElementById(id);
             x.style.display = (x.style.display === "block") ? "none" : "block";
         }
-
-        // עדכון תאריך אתמול באופן אוטומטי
-        let d = new Date();
-        d.setDate(d.getDate() - 1);
+        let d = new Date(); d.setDate(d.getDate() - 1);
         document.getElementById('date-label').innerText = "סיכום ליום: " + d.toLocaleDateString('he-IL');
     </script>
 </body>
