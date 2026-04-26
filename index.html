@@ -2,23 +2,66 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>AAA365 - LIVE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAA365 - Dashboard</title>
     <style>
-        body { font-family: sans-serif; background: #1a1a1a; color: white; text-align: center; padding: 50px; }
-        .card { background: #2d2d2d; padding: 20px; border-radius: 15px; border-right: 8px solid #ff9900; margin-bottom: 20px; display: inline-block; width: 80%; text-align: right; }
+        body { font-family: sans-serif; background: #121212; color: white; margin: 0; padding: 20px; text-align: center; }
+        .nav-menu { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
+        .nav-btn { background: #2d2d2d; color: white; border: 2px solid #ff9900; padding: 10px 20px; border-radius: 20px; cursor: pointer; transition: 0.3s; }
+        .nav-btn.active { background: #ff9900; color: black; font-weight: bold; }
+        .tab-content { display: none; animation: fadeIn 0.5s; }
+        .tab-content.active { display: block; }
+        .card { background: #1e1e1e; padding: 20px; border-radius: 15px; border-right: 8px solid #ff9900; margin: 15px auto; width: 90%; max-width: 600px; text-align: right; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
         h1 { color: #ff9900; }
-        .tips { font-size: 1.2em; line-height: 1.8; }
+        input { width: 80%; padding: 12px; margin: 10px 0; border-radius: 8px; border: none; font-size: 1em; text-align: center; background: #333; color: white; border: 1px solid #444; }
+        .calc-res { background: #333; padding: 15px; margin-top: 15px; border-radius: 10px; color: #00ff00; font-weight: bold; font-size: 1.2em; border: 1px dashed #00ff00; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
-    <h1>AAA365 - דוח מילוי מאומת</h1>
-    <div class="card">
-        <h2>⚽ כדורגל - דוח בוקר</h2>
-        <div class="tips">ארסנל - טוטנהאם: 1<br>מנצ'סטר סיטי - נוטינגהאם: 2<br>אינטר - טורינו: 1</div>
+    <h1>AAA365 - Dashboard</h1>
+    <div class="nav-menu">
+        <button class="nav-btn active" onclick="openTab('live')">שידור חי</button>
+        <button class="nav-btn" onclick="openTab('archive')">ארכיון</button>
+        <button class="nav-btn" onclick="openTab('results')">תוצאות</button>
+        <button class="nav-btn" onclick="openTab('method')">מחשבון השיטה</button>
     </div>
-    <div class="card">
-        <h2>🏀 NBA - דוח ערב</h2>
-        <div class="tips">דנבר נאגטס: 2 (W2)</div>
+    <div id="live" class="tab-content active">
+        <div class="card"><h2>⚽ דוח עדכני</h2><div id="current-football">ארסנל - טוטנהאם: 1</div></div>
     </div>
+    <div id="archive" class="tab-content">
+        <h2>ארכיון תחזיות</h2>
+        <div class="card"><p>הנתונים יועברו לכאן אוטומטית בכל עדכון.</p></div>
+    </div>
+    <div id="results" class="tab-content">
+        <h2>לוח תוצאות</h2>
+        <div class="card" style="border-right-color: #00ff00;"><h3>סטטיסטיקה</h3><p>רווח חודשי: 4,250 ₪</p></div>
+    </div>
+    <div id="method" class="tab-content">
+        <div class="card">
+            <h2>מחשבון חלוקת ה-1000</h2>
+            <input type="number" id="odds" step="0.01" placeholder="הכנס יחס (למשל 3.50)">
+            <button onclick="calculateMethod()" class="nav-btn" style="background:#ff9900; color:black; width: 100%;">חשב השקעה</button>
+            <div id="resultBox" class="calc-res" style="display:none;"></div>
+        </div>
+    </div>
+    <script>
+        function openTab(tabName) {
+            var i, x, tablinks;
+            x = document.getElementsByClassName("tab-content");
+            for (i = 0; i < x.length; i++) { x[i].style.display = "none"; }
+            tablinks = document.getElementsByClassName("nav-btn");
+            for (i = 0; i < tablinks.length; i++) { tablinks[i].classList.remove("active"); }
+            document.getElementById(tabName).style.display = "block";
+            event.currentTarget.classList.add("active");
+        }
+        function calculateMethod() {
+            let odds = document.getElementById('odds').value;
+            if(!odds || odds <= 0) return;
+            let investment = 1000 / odds;
+            document.getElementById('resultBox').style.display = "block";
+            document.getElementById('resultBox').innerHTML = "סכום להשקעה: " + investment.toFixed(2) + " ₪<br>רווח נקי: " + (1000 - investment).toFixed(2) + " ₪";
+        }
+    </script>
 </body>
 </html>
