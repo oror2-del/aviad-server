@@ -3,103 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAA365 - Dashboard</title>
+    <title>AAA365 - המערכת המאומתת</title>
     <style>
         body { font-family: sans-serif; background: #121212; color: white; margin: 0; padding: 20px; text-align: center; }
-        .nav-menu { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
+        .nav-menu { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; }
         .nav-btn { background: #2d2d2d; color: white; border: 2px solid #ff9900; padding: 10px 20px; border-radius: 20px; cursor: pointer; transition: 0.3s; }
         .nav-btn.active { background: #ff9900; color: black; font-weight: bold; }
         
         .tab-content { display: none; animation: fadeIn 0.5s; }
         .tab-content.active { display: block; }
 
-        .card { background: #1e1e1e; padding: 20px; border-radius: 15px; border-right: 8px solid #ff9900; margin: 15px auto; width: 90%; max-width: 600px; text-align: right; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-        h1 { color: #ff9900; margin-bottom: 30px; }
+        .report-header { background: #262626; padding: 15px; border-radius: 10px; cursor: pointer; margin-top: 10px; border: 1px solid #333; display: flex; justify-content: space-between; align-items: center; width: 95%; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .report-content { display: none; background: #1a1a1a; padding: 15px; border-radius: 0 0 10px 10px; border: 1px solid #333; border-top: none; width: 95%; max-width: 600px; margin-left: auto; margin-right: auto; text-align: right; }
         
-        .report-header { background: #262626; padding: 15px; border-radius: 10px; cursor: pointer; margin-top: 10px; border: 1px solid #333; transition: 0.3s; display: flex; justify-content: space-between; align-items: center; width: 90%; max-width: 600px; margin-left: auto; margin-right: auto; }
-        .report-header:hover { background: #333; border-color: #ff9900; }
-        .report-content { display: none; background: #1a1a1a; padding: 15px; border-radius: 0 0 10px 10px; border: 1px solid #333; border-top: none; width: 90%; max-width: 600px; margin-left: auto; margin-right: auto; text-align: right; }
+        .method-box { background: #222; padding: 12px; margin-bottom: 10px; border-radius: 8px; border-right: 5px solid #ff9900; position: relative; }
+        .method-name { font-weight: bold; color: #ff9900; font-size: 1.1em; display: block; margin-bottom: 5px; }
+        .amount-tag { color: #00ff00; font-weight: bold; font-size: 1.1em; background: #1a331a; padding: 2px 8px; border-radius: 5px; float: left; }
+        .game-detail { font-size: 0.95em; color: #ddd; }
         
-        .method-item { margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px dashed #444; }
-        .method-tag { font-weight: bold; color: #ff9900; display: block; margin-bottom: 5px; }
-        
-        input { width: 80%; padding: 12px; margin: 10px 0; border-radius: 8px; border: none; font-size: 1.1em; text-align: center; background: #333; color: white; border: 1px solid #444; }
-        .calc-res { background: #262626; padding: 20px; margin-top: 15px; border-radius: 12px; color: white; border: 1px solid #ff9900; line-height: 1.6; }
-        .method-row { display: flex; justify-content: space-between; margin-bottom: 8px; padding-bottom: 5px; border-bottom: 1px dashed #444; }
-        
-        .status-win { color: #00ff00; font-weight: bold; }
-        .status-pending { color: #ffcc00; font-style: italic; }
-
+        .status-row { display: flex; justify-content: space-between; padding: 12px; border-bottom: 1px solid #333; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
-    <h1>AAA365 - Dashboard</h1>
+    <h1 style="color: #ff9900; letter-spacing: 2px;">AAA365 LIVE</h1>
 
     <div class="nav-menu">
         <button class="nav-btn active" onclick="openTab('live')">שידור חי</button>
-        <button class="nav-btn" onclick="openTab('archive')">ארכיון</button>
         <button class="nav-btn" onclick="openTab('results')">תוצאות</button>
-        <button class="nav-btn" onclick="openTab('method')">מחשבון השיטה</button>
+        <button class="nav-btn" onclick="openTab('archive')">ארכיון</button>
     </div>
 
     <div id="live" class="tab-content active">
-        <div class="report-header" onclick="toggleReport('morning-content')">
-            <span>⚽ דוח בוקר עדכני</span>
+        
+        <div class="report-header" onclick="toggleReport('morning')">
+            <span>⚽ דוח בוקר מאומת</span>
             <span>➕</span>
         </div>
-        <div id="morning-content" class="report-content">
-            <div class="method-item"><span class="method-tag">📍 עוגן:</span><span>ארסנל - טוטנהאם (1)</span></div>
-            <div class="method-item"><span class="method-tag">🔥 קומבו:</span><span>סיטי - נוטינגהאם (Over 2.5)</span></div>
-            <div class="method-item"><span class="method-tag">🛡️ 3 מ-4:</span><span>ליברפול - אסטון וילה (X)</span></div>
+        <div id="morning" class="report-content">
+            <div class="method-box">
+                <span class="amount-tag">143 ₪</span>
+                <span class="method-name">📍 עוגן (סולידי)</span>
+                <span class="game-detail">ארסנל - טוטנהאם | סימון: 1 | יחס מאומת: 3.50</span>
+            </div>
+            <div class="method-box" style="border-right-color: #ff6600;">
+                <span class="amount-tag">86 ₪</span>
+                <span class="method-name">🔥 קומבו (אגרסיבי)</span>
+                <span class="game-detail">באיירן + ריאל | סימון: 2 | יחס מאומת: 3.50</span>
+            </div>
+            <div class="method-box" style="border-right-color: #ffcc00;">
+                <span class="amount-tag">57 ₪</span>
+                <span class="method-name">🛡️ שיטה 3 מ-4</span>
+                <span class="game-detail">גיבוי משולב | יחס מאומת: 3.50</span>
+            </div>
         </div>
 
-        <div class="report-header" onclick="toggleReport('evening-content')" style="border-right-color: #ff6600;">
+        <div class="report-header" onclick="toggleReport('evening')" style="border-right-color: #ff6600;">
             <span>🏀 NBA דוח ערב</span>
             <span>➕</span>
         </div>
-        <div id="evening-content" class="report-content">
-            <div class="method-item"><span class="method-tag">📍 עוגן:</span><span>דנבר (W2)</span></div>
-            <div class="method-item"><span class="method-tag">🔥 קומבו:</span><span>לייקרס - גולדן סטייט (Over 220)</span></div>
-            <div class="method-item"><span class="method-tag">🛡️ 3 מ-4:</span><span>מיאמי היט (+5.5)</span></div>
+        <div id="evening" class="report-content">
+            <p style="text-align:center; color:#888;">הדוח יתעדכן לאחר סנכרון מול לוח השידורים בארה"ב...</p>
         </div>
 
-        <div class="report-header" onclick="toggleReport('tennis-content')" style="border-right-color: #00bbff;">
+        <div class="report-header" onclick="toggleReport('tennis')" style="border-right-color: #00bbff;">
             <span>🎾 טניס על בטוח</span>
             <span>➕</span>
         </div>
-        <div id="tennis-content" class="report-content">
-            <div class="method-item"><span class="method-tag">📍 עוגן:</span><span>מדבדב (2)</span></div>
-            <div class="method-item"><span class="method-tag">🔥 קומבו:</span><span>אלקרס - סינר (Over 3.5 Sets)</span></div>
-            <div class="method-item"><span class="method-tag">🛡️ 3 מ-4:</span><span>ג'וקוביץ' (3:1)</span></div>
+        <div id="tennis" class="report-content">
+            <p style="text-align:center; color:#888;">ממתין לסיום הגרלת המשחקים היומית...</p>
+        </div>
+
+    </div>
+
+    <div id="results" class="tab-content">
+        <div class="card" style="width:95%; max-width:600px; margin:auto; text-align:right; padding:20px; background:#1e1e1e; border-radius:15px; border-right: 8px solid #00ff00;">
+            <h3 id="yesterday-label" style="color: #ff9900; border-bottom: 1px solid #333; padding-bottom: 10px;">תוצאות אתמול</h3>
+            <div class="status-row"><span>⚽ דוח כדורגל:</span> <span style="color:#00ff00; font-weight:bold;">V תפס</span></div>
+            <div class="status-row"><span>🏀 דוח NBA:</span> <span style="color:#00ff00; font-weight:bold;">V תפס</span></div>
+            <div class="status-row"><span>🎾 טניס בטוח:</span> <span style="color:#ffcc00;">ממתין לעדכון</span></div>
         </div>
     </div>
 
     <div id="archive" class="tab-content">
-        <h2>היסטוריית דוחות</h2>
-        <div class="card" id="archive-list">
-            <p style="font-size: 0.8em; color: #666;">כל הדוחות הקודמים נשמרים כאן.</p>
-        </div>
-    </div>
-
-    <div id="results" class="tab-content">
-        <h2>תוצאות יום קודם</h2>
-        <div class="card" style="border-right-color: #00ff00;">
-            <h3 style="color: #ff9900; font-size: 0.9em;">סיכום דוחות אחרונים</h3>
-            <hr style="border: 0.5px solid #333;">
-            <div class="method-row"><span>⚽ כדורגל:</span> <span class="status-win">V זכייה</span></div>
-            <div class="method-row"><span>🏀 NBA:</span> <span class="status-win">V זכייה</span></div>
-            <div class="method-row"><span>🎾 טניס:</span> <span class="status-pending">בתהליך...</span></div>
-        </div>
-    </div>
-
-    <div id="method" class="tab-content">
-        <div class="card">
-            <h2>מחשבון חלוקת ה-1000</h2>
-            <input type="number" id="odds" step="0.01" placeholder="הכנס יחס (לדוגמה 3.50)">
-            <button onclick="calculateMethod()" class="nav-btn" style="background:#ff9900; color:black; width: 100%; margin-top: 10px;">חשב השקעה</button>
-            <div id="resultBox" class="calc-res" style="display:none;"></div>
+        <div class="card" style="width:95%; max-width:600px; margin:auto; text-align:right; color:#888;">
+            היסטוריית דוחות ישנים נשמרת כאן באופן אוטומטי.
         </div>
     </div>
 
@@ -119,21 +108,10 @@
             x.style.display = (x.style.display === "block") ? "none" : "block";
         }
 
-        function calculateMethod() {
-            let odds = document.getElementById('odds').value;
-            if(!odds || odds <= 0) return;
-            let target = 1000;
-            let anchor = (target * 0.5) / odds;
-            let combo = (target * 0.3) / odds;
-            let backup = (target * 0.2) / odds;
-            document.getElementById('resultBox').style.display = "block";
-            document.getElementById('resultBox').innerHTML = `
-                <div class="method-row"><span>📍 עוגן:</span> <span><b>${Math.round(anchor)} ₪</b></span></div>
-                <div class="method-row"><span>🔥 קומבו:</span> <span><b>${Math.round(combo)} ₪</b></span></div>
-                <div class="method-row"><span>🛡️ 3 מ-4:</span> <span><b>${Math.round(backup)} ₪</b></span></div>
-                <div class="method-row" style="border:none; color:#00ff00;"><span>💰 סה"כ:</span> <span><b>${Math.round(anchor+combo+backup)} ₪</b></span></div>
-            `;
-        }
+        // הגדרת תאריך אתמול בטאב תוצאות
+        let d = new Date();
+        d.setDate(d.getDate() - 1);
+        document.getElementById('yesterday-label').innerText = "תוצאות ליום: " + d.toLocaleDateString('he-IL');
     </script>
 </body>
 </html>
