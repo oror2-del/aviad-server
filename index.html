@@ -21,23 +21,13 @@
             text-align: center;
             background-image: 
                 linear-gradient(rgba(5, 10, 15, 0.9), rgba(5, 10, 15, 0.9)),
-                url('https://www.transparenttextures.com/patterns/dark-matter.png');
-        }
-
-        /* רקע ניאון זוהר בראש הדף */
-        .header-glow {
-            position: absolute;
-            top: 0; left: 50%; transform: translateX(-50%);
-            width: 100%; height: 200px;
-            background: radial-gradient(circle, rgba(0, 210, 255, 0.15) 0%, transparent 70%);
-            z-index: -1;
+                url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
         }
 
         .container { max-width: 850px; margin: auto; }
 
-        /* כותרת בעיצוב לדים כחולים */
         .main-title { 
-            font-size: 3.5em; font-weight: 900; letter-spacing: 4px; margin: 10px 0 0 0;
+            font-size: 3.5em; font-weight: 900; letter-spacing: 4px; margin: 20px 0 0 0;
             color: #fff; text-shadow: 0 0 20px var(--neon-glow), 0 0 40px var(--neon-glow);
         }
         .sub-title { 
@@ -45,129 +35,165 @@
             margin-bottom: 40px; text-shadow: 0 0 10px var(--neon-blue);
         }
 
-        /* כפתורי ניווט - סגנון קזינו יוקרתי */
-        .nav-menu { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap; }
+        /* תפריט ניווט */
+        .nav-menu { display: flex; justify-content: center; gap: 10px; margin-bottom: 35px; flex-wrap: wrap; }
         .nav-btn { 
             background: rgba(255, 255, 255, 0.05); color: #fff; border: 2px solid var(--neon-blue);
-            padding: 12px 30px; border-radius: 50px; cursor: pointer; transition: 0.3s;
-            font-weight: bold; text-shadow: 0 0 5px var(--neon-blue);
-            box-shadow: 0 0 10px rgba(0, 210, 255, 0.2);
+            padding: 12px 20px; border-radius: 50px; cursor: pointer; transition: 0.3s;
+            font-weight: bold; font-size: 0.9em;
         }
-        .nav-btn.active { 
-            background: var(--neon-blue); color: #000;
-            box-shadow: 0 0 25px var(--neon-blue);
-        }
+        .nav-btn.active { background: var(--neon-blue); color: #000; box-shadow: 0 0 20px var(--neon-blue); }
 
-        /* קופסאות המשחקים - עיצוב מובלט עם כדורים */
-        .report-section { margin-bottom: 25px; }
+        /* עיצוב כותרת קטגוריה (האופציות) */
+        .section-header { 
+            background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: 12px;
+            cursor: pointer; margin-top: 15px; border: 1px solid rgba(0, 210, 255, 0.2);
+            display: flex; justify-content: space-between; align-items: center;
+            transition: 0.3s; font-size: 1.3em; font-weight: bold; color: var(--led-white);
+        }
+        .section-header:hover { border-color: var(--neon-blue); background: rgba(0, 210, 255, 0.05); }
+
+        .section-content { display: none; padding-top: 10px; animation: slideDown 0.4s ease; }
+
+        /* קופסאות המשחקים - סגנון לדים */
         .method-box { 
             background: linear-gradient(145deg, #101a24, #080f15);
-            border: 1px solid rgba(0, 210, 255, 0.3);
-            border-radius: 15px; padding: 20px; margin-bottom: 15px;
+            border: 1px solid rgba(0, 210, 255, 0.2);
+            border-radius: 15px; padding: 20px; margin-bottom: 12px;
             display: flex; align-items: center; justify-content: space-between;
-            position: relative; overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-            transition: 0.3s;
+            position: relative; box-shadow: 0 8px 15px rgba(0,0,0,0.4);
         }
-        .method-box:hover { transform: scale(1.02); border-color: var(--neon-blue); }
 
-        /* כדורי ספורט מובלטים */
-        .sport-icon { font-size: 3.5em; opacity: 0.4; position: absolute; left: 20px; filter: drop-shadow(0 0 10px var(--neon-blue)); }
-
+        .sport-icon { font-size: 3em; opacity: 0.3; position: absolute; left: 20px; filter: drop-shadow(0 0 10px var(--neon-blue)); }
         .info-container { text-align: right; width: 100%; padding-right: 80px; }
+        .game-text { font-size: 1.3em; font-weight: bold; margin: 5px 0; color: #fff; }
         
-        .method-label { color: var(--neon-blue); font-size: 0.85em; font-weight: bold; text-transform: uppercase; }
-        .game-text { font-size: 1.4em; font-weight: bold; margin: 5px 0; color: #fff; }
-        
-        /* תגית מחיר - לד לבן מנצנץ */
         .amount-tag { 
-            background: rgba(255, 255, 255, 0.05); border: 2px solid #fff;
-            color: #fff; font-size: 1.5em; font-weight: 900;
-            padding: 10px 20px; border-radius: 10px;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-            text-shadow: 0 0 10px #fff;
+            border: 2px solid #fff; color: #fff; font-size: 1.4em; font-weight: 900;
+            padding: 8px 15px; border-radius: 8px; box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            text-shadow: 0 0 10px #fff; white-space: nowrap;
         }
 
-        /* לוח שידורים */
-        .schedule-card { background: rgba(255,255,255,0.02); border-radius: 15px; padding: 20px; border: 1px solid #111; }
-        .live-status { color: var(--neon-blue); animation: blink 1.5s infinite; font-weight: bold; }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .blink { animation: blinkEffect 1.5s infinite; }
+        @keyframes blinkEffect { 0% {opacity: 1;} 50% {opacity: 0.4;} 100% {opacity: 1;} }
 
-        @keyframes blink { 0% {opacity: 1;} 50% {opacity: 0.4;} 100% {opacity: 1;} }
+        /* לוח שידורים וארכיון */
+        .card-bg { background: rgba(255,255,255,0.02); border-radius: 15px; padding: 25px; border: 1px solid #111; text-align: right; }
     </style>
 </head>
 <body>
 
-    <div class="header-glow"></div>
+<div class="container">
+    <div class="header-section">
+        <h1 class="main-title">AAA365 PRO</h1>
+        <div class="sub-title">הטיפ היומי של אביעד ובנצי</div>
+    </div>
 
-    <div class="container">
-        <div class="header-section">
-            <h1 class="main-title">AAA365 PRO</h1>
-            <div class="sub-title">הטיפ היומי של אביעד ובנצי</div>
+    <div class="nav-menu">
+        <button class="nav-btn active" onclick="openTab('live')">דוחות מילוי (1,000₪)</button>
+        <button class="nav-btn" onclick="openTab('schedule')">לוח שידורים</button>
+        <button class="nav-btn" onclick="openTab('results')">תוצאות</button>
+        <button class="nav-btn" onclick="openTab('archive')">ארכיון</button>
+    </div>
+
+    <div id="live" class="tab-content" style="display: block;">
+        
+        <div class="section-header" onclick="toggleSection('soccer_rep')">
+            <span>⚽ כדורגל (אירופה)</span>
+            <span class="blink" style="color: var(--neon-blue); font-size: 0.7em;">LIVE ●</span>
         </div>
-
-        <div class="nav-menu">
-            <button class="nav-btn active" onclick="openTab('live')">דוחות מילוי</button>
-            <button class="nav-btn" onclick="openTab('schedule')">לוח שידורים</button>
-            <button class="nav-btn" onclick="openTab('results')">תוצאות</button>
-        </div>
-
-        <div id="live" class="tab-content" style="display: block;">
+        <div id="soccer_rep" class="section-content" style="display: block;">
             <div class="method-box">
                 <div class="sport-icon">⚽</div>
                 <div class="amount-tag">₪ 143</div>
                 <div class="info-container">
-                    <div class="method-label">OFFICIAL ANCHOR</div>
+                    <div style="color: var(--neon-blue); font-size: 0.8em; font-weight: bold;">OFFICIAL ANCHOR</div>
                     <div class="game-text">מנצ'סטר סיטי - וולבס</div>
-                    <div style="color: var(--neon-blue);">סימון: 1 | 22:00</div>
+                    <div style="color: #aaa;">סימון: 1 | יחס: 1.45</div>
                 </div>
             </div>
+        </div>
 
-            <div class="method-box" style="border-color: rgba(255,255,255,0.2);">
+        <div class="section-header" onclick="toggleSection('nba_rep')">
+            <span>🏀 כדורסל (NBA)</span>
+            <span>+</span>
+        </div>
+        <div id="nba_rep" class="section-content">
+            <div class="method-box">
                 <div class="sport-icon">🏀</div>
                 <div class="amount-tag">₪ 86</div>
                 <div class="info-container">
-                    <div class="method-label" style="color: #fff;">AGGRESSIVE COMBO</div>
+                    <div style="color: var(--neon-blue); font-size: 0.8em; font-weight: bold;">AGGRESSIVE COMBO</div>
                     <div class="game-text">בוסטון - מיאמי</div>
-                    <div style="color: #aaa;">סימון: 1 (-5) | 02:30</div>
+                    <div style="color: #aaa;">סימון: 1 (-5) | יחס: 1.85</div>
                 </div>
             </div>
+        </div>
 
+        <div class="section-header" onclick="toggleSection('tennis_rep')">
+            <span>🎾 טניס (ATP)</span>
+            <span>+</span>
+        </div>
+        <div id="tennis_rep" class="section-content">
             <div class="method-box">
                 <div class="sport-icon">🎾</div>
                 <div class="amount-tag">₪ 57</div>
                 <div class="info-container">
-                    <div class="method-label">SYSTEM 3/4</div>
+                    <div style="color: var(--neon-blue); font-size: 0.8em; font-weight: bold;">SYSTEM 3/4</div>
                     <div class="game-text">אלקרס - סינר</div>
-                    <div style="color: var(--neon-blue);">סימון: 2 | 11:30</div>
+                    <div style="color: #aaa;">סימון: 2 | יחס: 1.70</div>
                 </div>
             </div>
         </div>
 
-        <div id="schedule" class="tab-content" style="display: none;">
-            <div class="schedule-card">
-                <h3 style="color: var(--neon-blue);">📺 לוח שידורים LIVE</h3>
-                <div style="display: flex; justify-content: space-between; padding: 15px; border-bottom: 1px solid #222;">
-                    <span>סיטי - וולבס</span>
-                    <span class="live-status">משדר עכשיו</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; padding: 15px;">
-                    <span>בוסטון - מיאמי</span>
-                    <span>ממתין ללילה</span>
-                </div>
-            </div>
+    </div>
+
+    <div id="schedule" class="tab-content" style="display: none;">
+        <div class="card-bg">
+            <h3 style="color: var(--neon-blue);">📺 שידורי היום</h3>
+            <p>סיטי - וולבס (22:00) - <strong>משדר עכשיו</strong></p>
+            <p>בוסטון - מיאמי (02:30) - ממתין</p>
         </div>
     </div>
 
-    <script>
-        function openTab(tabName) {
-            var i, x, tablinks;
-            x = document.getElementsByClassName("tab-content");
-            for (i = 0; i < x.length; i++) { x[i].style.display = "none"; }
-            tablinks = document.getElementsByClassName("nav-btn");
-            for (i = 0; i < tablinks.length; i++) { tablinks[i].classList.remove("active"); }
-            document.getElementById(tabName).style.display = "block";
-            event.currentTarget.classList.add("active");
+    <div id="results" class="tab-content" style="display: none;">
+        <div class="card-bg" style="border-right: 5px solid #00ff00;">
+            <h3 style="color: #00ff00;">✅ תוצאות אחרונות</h3>
+            <p>דוח NBA לילה: זכייה (עוגן + קומבו)</p>
+            <p>דוח כדורגל בוקר: זכייה</p>
+        </div>
+    </div>
+
+    <div id="archive" class="tab-content" style="display: none;">
+        <div class="card-bg">
+            <h3 style="color: var(--neon-blue);">📂 ארכיון דוחות</h3>
+            <p style="color: #666;">כאן ירוכזו כל הדוחות שנשלחו ב-30 הימים האחרונים.</p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function openTab(tabName) {
+        var i, x, tablinks;
+        x = document.getElementsByClassName("tab-content");
+        for (i = 0; i < x.length; i++) { x[i].style.display = "none"; }
+        tablinks = document.getElementsByClassName("nav-btn");
+        for (i = 0; i < tablinks.length; i++) { tablinks[i].classList.remove("active"); }
+        document.getElementById(tabName).style.display = "block";
+        event.currentTarget.classList.add("active");
+    }
+
+    function toggleSection(id) {
+        var x = document.getElementById(id);
+        if (x.style.display === "block") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "block";
         }
-    </script>
+    }
+</script>
+
 </body>
 </html>
