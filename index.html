@@ -3,124 +3,323 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAA365 PRO - הטיפ היומי של אביעד</title>
+    <title>AAA365 PRO - הטיפ היומי של אביעד ובנצי</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f0f0f; color: white; margin: 0; padding: 15px; text-align: center; }
-        .container { max-width: 800px; margin: auto; }
+        :root {
+            --primary: #ff9900;
+            --secondary: #00e6ff; /* כחול טניס */
+            --tertiary: #ff3300; /* אדום כדורגל */
+            --quaternary: #00ff00; /* ירוק זכייה */
+            --bg-dark: #070707;
+            --box-bg: rgba(26, 26, 26, 0.85); /* שקיפות GLASSMOPHISM */
+        }
+
+        body { 
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: var(--bg-dark);
+            color: #fff; 
+            margin: 0; 
+            padding: 10px; 
+            text-align: center; 
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* רקע ספורטיבי מעוצב (אנימציית ניאון עדינה) */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(255, 153, 0, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 80% 80%, rgba(0, 230, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(255, 51, 0, 0.05) 0%, transparent 25%),
+                url('https://www.transparenttextures.com/patterns/dark-circles.png'); /* טקסטורה של NBA/כדורגל */
+            opacity: 0.6;
+            z-index: -2;
+        }
+
+        /* סמל מים (Watermark) עדין של ספורט */
+        .sports-bg-icon {
+            position: fixed;
+            font-size: 30rem;
+            opacity: 0.02;
+            z-index: -1;
+            user-select: none;
+        }
+        .icon-soccer { top: -10%; left: -10%; color: var(--tertiary); }
+        .icon-basket { bottom: -10%; right: -10%; color: var(--primary); }
+        .icon-tennis { top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--secondary); }
+
+        .container { max-width: 900px; margin: auto; padding-bottom: 50px; }
         
-        /* עיצוב כותרת חדש */
-        .main-title { color: #ff9900; letter-spacing: 2px; text-shadow: 2px 2px 4px #000; margin-bottom: 5px; font-size: 2.2em; }
-        .sub-title { color: #ffffff; font-size: 1.4em; font-weight: bold; margin-bottom: 25px; border-bottom: 2px solid #ff9900; display: inline-block; padding-bottom: 5px; }
+        /* כותרת חדשנית ויוקרתית */
+        .main-title { 
+            color: var(--primary); 
+            letter-spacing: 3px; 
+            text-shadow: 0 0 15px rgba(255, 153, 0, 0.7); 
+            margin-bottom: 2px; 
+            font-size: 2.8em; 
+            font-weight: 900;
+        }
+        .sub-title { 
+            color: #ffffff; 
+            font-size: 1.6em; 
+            font-weight: 700; 
+            margin-bottom: 30px; 
+            border-bottom: 3px solid var(--primary); 
+            display: inline-block; 
+            padding-bottom: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
         
-        .nav-menu { display: flex; justify-content: center; gap: 8px; margin-bottom: 25px; flex-wrap: wrap; }
-        .nav-btn { background: #1a1a1a; color: #ccc; border: 1px solid #333; padding: 10px 15px; border-radius: 8px; cursor: pointer; transition: 0.3s; font-size: 0.9em; }
-        .nav-btn.active { background: #ff9900; color: black; font-weight: bold; border-color: #ff9900; }
+        /* תפריט מודרני מבריק (Glossy) */
+        .nav-menu { 
+            display: flex; 
+            justify-content: center; 
+            gap: 10px; 
+            margin-bottom: 30px; 
+            flex-wrap: wrap; 
+            background: rgba(255,255,255,0.03); 
+            padding: 10px; 
+            border-radius: 50px; 
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
+        }
+        .nav-btn { 
+            background: #111; 
+            color: #aaa; 
+            border: 1px solid #222; 
+            padding: 12px 20px; 
+            border-radius: 50px; 
+            cursor: pointer; 
+            transition: all 0.4s ease; 
+            font-size: 1em; 
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        .nav-btn::after {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg); transition: 0.6s;
+        }
+        .nav-btn:hover::after { left: 100%; }
+        .nav-btn:hover { color: #fff; border-color: var(--primary); background: #1a1a1a; }
+        .nav-btn.active { 
+            background: var(--primary); 
+            color: black; 
+            font-weight: 700; 
+            border-color: var(--primary); 
+            box-shadow: 0 0 20px rgba(255, 153, 0, 0.6);
+        }
 
-        .tab-content { display: none; animation: fadeIn 0.4s; }
-        .tab-content.active { display: block; }
+        .tab-content { display: none; transform: translateY(20px); opacity: 0; }
+        .tab-content.active { display: block; animation: slideIn 0.5s forwards ease-out; }
 
-        .section-header { background: linear-gradient(90deg, #1e1e1e, #262626); padding: 15px; border-radius: 12px; cursor: pointer; margin-top: 12px; border: 1px solid #333; display: flex; justify-content: space-between; align-items: center; }
-        .section-header:hover { border-color: #ff9900; }
-        .section-content { display: none; background: #141414; padding: 15px; border-radius: 0 0 12px 12px; border: 1px solid #333; border-top: none; text-align: right; }
+        /* כותרות סעיפים בעיצוב נאון */
+        .section-header { 
+            background: var(--box-bg); 
+            backdrop-filter: blur(5px);
+            padding: 18px; 
+            border-radius: 15px; 
+            cursor: pointer; 
+            margin-top: 15px; 
+            border: 1px solid #333; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        }
+        .section-header:hover { 
+            border-color: var(--primary); 
+            box-shadow: 0 0 15px rgba(255, 153, 0, 0.4); 
+        }
+        .section-content { 
+            display: none; 
+            background: rgba(10,10,10,0.9); 
+            padding: 20px; 
+            border-radius: 0 0 15px 15px; 
+            border: 1px solid #333; 
+            border-top: none; 
+            text-align: right; 
+            animation: expandDown 0.4s ease;
+        }
 
-        .method-box { background: #1d1d1d; padding: 15px; margin-bottom: 12px; border-radius: 10px; border-right: 6px solid #ff9900; position: relative; }
-        .method-name { font-weight: bold; color: #ff9900; font-size: 1.1em; display: block; margin-bottom: 5px; }
-        .amount-tag { color: #00ff00; font-weight: bold; font-size: 1.2em; background: #1a331a; padding: 4px 10px; border-radius: 6px; float: left; }
-        .game-info { color: #eee; font-size: 1em; line-height: 1.5; }
+        /* קופסאות דוח מעוצבות (Glassmorphism & Neon) */
+        .method-box { 
+            background: rgba(30,30,30,0.6); 
+            backdrop-filter: blur(3px);
+            padding: 18px; 
+            margin-bottom: 15px; 
+            border-radius: 12px; 
+            border: 1px solid rgba(255,255,255,0.05);
+            border-right: 6px solid var(--primary); 
+            position: relative; 
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        .method-box:hover { transform: scale(1.02); box-shadow: 0 8px 20px rgba(0,0,0,0.5); }
+        .method-name { font-weight: bold; color: var(--primary); font-size: 1.2em; display: block; margin-bottom: 8px; text-shadow: 0 0 5px rgba(255, 153, 0, 0.5); }
+        .amount-tag { 
+            color: var(--quaternary); 
+            font-weight: 800; 
+            font-size: 1.3em; 
+            background: rgba(0, 255, 0, 0.1); 
+            padding: 6px 12px; 
+            border-radius: 8px; 
+            float: left; 
+            border: 1px solid rgba(0,255,0,0.2);
+            box-shadow: 0 0 10px rgba(0,255,0,0.2);
+        }
+        .game-info { color: #fff; font-size: 1.1em; line-height: 1.6; font-weight: 500; }
 
-        .schedule-table { width: 100%; border-collapse: collapse; margin-top: 10px; background: #1a1a1a; border-radius: 10px; overflow: hidden; }
-        .schedule-table th { background: #333; color: #ff9900; padding: 12px; text-align: center; font-size: 0.9em; }
-        .schedule-table td { padding: 12px; border-bottom: 1px solid #222; text-align: center; font-size: 0.9em; }
-        .live-dot { height: 8px; width: 8px; background-color: #ff0000; border-radius: 50%; display: inline-block; margin-left: 5px; animation: blink 1s infinite; }
+        /* לוח שידורים משודרג (קזינו/חדר בקרה) */
+        .schedule-table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 15px; 
+            background: rgba(15,15,15,0.8); 
+            backdrop-filter: blur(5px);
+            border-radius: 15px; 
+            overflow: hidden; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            border: 1px solid #222;
+        }
+        .schedule-table th { 
+            background: linear-gradient(180deg, #222, #111); 
+            color: var(--primary); 
+            padding: 15px; 
+            text-align: center; 
+            font-size: 1em; 
+            font-weight: 700;
+            border-bottom: 2px solid #333;
+        }
+        .schedule-table td { 
+            padding: 15px; 
+            border-bottom: 1px solid #1a1a1a; 
+            text-align: center; 
+            font-size: 1em; 
+            font-weight: 500;
+            color: #ddd;
+        }
+        .schedule-table tr:last-child td { border-bottom: none; }
+        .schedule-table tr:hover td { background: rgba(255,255,255,0.03); color: #fff; }
 
-        @keyframes blink { 0% {opacity: 1;} 50% {opacity: 0.3;} 100% {opacity: 1;} }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .footer-note { margin-top: 30px; font-size: 0.8em; color: #555; }
+        /* נקודה חיה מהבהבת */
+        .live-dot { 
+            height: 10px; width: 10px; 
+            background-color: var(--tertiary); 
+            border-radius: 50%; 
+            display: inline-block; 
+            margin-left: 8px; 
+            animation: pulse-red 1.2s infinite; 
+            box-shadow: 0 0 10px var(--tertiary);
+        }
+
+        /* הערות שוליים */
+        .footer-note { margin-top: 40px; font-size: 0.85em; color: #444; font-weight: 500; }
+
+        /* אנימציות */
+        @keyframes pulse-red { 0% {box-shadow: 0 0 0 0 rgba(255, 51, 0, 0.7);} 70% {box-shadow: 0 0 0 10px rgba(255, 51, 0, 0);} 100% {box-shadow: 0 0 0 0 rgba(255, 51, 0, 0);} }
+        @keyframes slideIn { to { opacity: 1; transform: translateY(0); } }
+        @keyframes expandDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* צבעים ייעודיים לחתכים לפי ענף */
+        #soccer_rep_header { border-right: 5px solid var(--tertiary); }
+        #tennis_rep_header { border-right: 5px solid var(--secondary); }
+        #nba_rep_header { border-right: 5px solid var(--primary); }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
+    <div class="sports-bg-icon icon-soccer">⚽</div>
+    <div class="sports-bg-icon icon-basket">🏀</div>
+    <div class="sports-bg-icon icon-tennis">🎾</div>
+
 <div class="container">
     <div class="main-title">AAA365 PRO</div>
-    <div class="sub-title">הטיפ היומי של אביעד</div>
+    <div class="sub-title">הטיפ היומי של אביעד ובנצי</div>
 
     <div class="nav-menu">
-        <button class="nav-btn active" onclick="openTab('live')">📋 דוחות מילוי (1,000₪)</button>
+        <button class="nav-btn active" onclick="openTab('live')">📊 דוחות מילוי (1,000₪)</button>
         <button class="nav-btn" onclick="openTab('schedule')">📺 לוח שידורים LIVE</button>
         <button class="nav-btn" onclick="openTab('results')">✅ תוצאות</button>
         <button class="nav-btn" onclick="openTab('archive')">📂 ארכיון</button>
     </div>
 
     <div id="live" class="tab-content active">
-        <div class="section-header" onclick="toggleSection('soccer_rep')">
-            <span>⚽ דוח כדורגל (מאומת)</span>
+        <div class="section-header" id="soccer_rep_header" onclick="toggleSection('soccer_rep')">
+            <span style="font-weight:700;">⚽ דוח כדורגל (מאומת)</span>
             <span>+</span>
         </div>
         <div id="soccer_rep" class="section-content" style="display:block;">
             <div class="method-box">
                 <span class="amount-tag">143 ₪</span>
                 <span class="method-name">📍 עוגן (סולידי)</span>
-                <span class="game-info">סיטי - וולבס | סימון: 1 | יחס ממוצע: 3.50</span>
+                <span class="game-info">סיטי - וולבס | **סימון: 1** | 22:00 | יחס ממוצע: 3.50</span>
             </div>
             <div class="method-box" style="border-right-color: #ff6600;">
                 <span class="amount-tag">86 ₪</span>
                 <span class="method-name">🔥 קומבו (אגרסיבי)</span>
-                <span class="game-info">ברצלונה - ולנסיה | סימון: Over 1.5 | יחס ממוצע: 3.50</span>
+                <span class="game-info">ברצלונה - ולנסיה | **סימון: Over 1.5** | 22:00 | יחס ממוצע: 3.50</span>
             </div>
             <div class="method-box" style="border-right-color: #ffcc00;">
                 <span class="amount-tag">57 ₪</span>
                 <span class="method-name">🛡️ שיטה 3 מ-4</span>
-                <span class="game-info">לאציו - ורונה | סימון: 1X | יחס ממוצע: 3.50</span>
+                <span class="game-info">לאציו - ורונה | **סימון: 1X (כפול)** | 21:45 | יחס ממוצע: 3.50</span>
             </div>
         </div>
 
-        <div class="section-header" onclick="toggleSection('tennis_rep')" style="border-right: 5px solid #00bbff;">
-            <span>🎾 דוח טניס (מדריד)</span>
+        <div class="section-header" id="tennis_rep_header" onclick="toggleSection('tennis_rep')">
+            <span style="font-weight:700;">🎾 דוח טניס (מדריד 1000)</span>
             <span>+</span>
         </div>
         <div id="tennis_rep" class="section-content">
-            <div class="method-box" style="border-right-color: #00bbff;">
+            <div class="method-box" style="border-right-color: var(--secondary);">
                 <span class="amount-tag">143 ₪</span>
                 <span class="method-name">📍 עוגן (סולידי)</span>
-                <span class="game-info">אלקרס - סינר | סימון: 2 | יחס ממוצע: 3.50</span>
+                <span class="game-info">אלקרס - סינר | **סימון: 2 (אלקרס)** | 11:30 | יחס ממוצע: 3.50</span>
             </div>
-            <div class="method-box" style="border-right-color: #00bbff;">
+            <div class="method-box" style="border-right-color: var(--secondary);">
                 <span class="amount-tag">86 ₪</span>
                 <span class="method-name">🔥 קומבו (אגרסיבי)</span>
-                <span class="game-info">מדבדב - זברב | סימון: Over 21.5 | יחס ממוצע: 3.50</span>
+                <span class="game-info">מדבדב - זברב | **סימון: Over 21.5** | 13:00 | יחס ממוצע: 3.50</span>
             </div>
             <div class="method-box" style="border-right-color: #ffcc00;">
                 <span class="amount-tag">57 ₪</span>
                 <span class="method-name">🛡️ שיטה 3 מ-4</span>
-                <span class="game-info">סאבלנקה - ריבאקינה | סימון: 1 | יחס ממוצע: 3.50</span>
+                <span class="game-info">סאבלנקה - ריבאקינה | **סימון: 1 (סאבלנקה)** | 14:30 | יחס ממוצע: 3.50</span>
             </div>
         </div>
 
-        <div class="section-header" onclick="toggleSection('nba_rep')" style="border-right: 5px solid #ff3300;">
-            <span>🏀 דוח NBA (לילה)</span>
+        <div class="section-header" id="nba_rep_header" onclick="toggleSection('nba_rep')">
+            <span style="font-weight:700;">🏀 דוח NBA לילה (פלייאוף)</span>
             <span>+</span>
         </div>
         <div id="nba_rep" class="section-content">
-            <div class="method-box" style="border-right-color: #ff3300;">
+            <div class="method-box" style="border-right-color: var(--primary);">
                 <span class="amount-tag">143 ₪</span>
                 <span class="method-name">📍 עוגן (סולידי)</span>
-                <span class="game-info">בוסטון - מיאמי | סימון: 1 | יחס ממוצע: 3.50</span>
+                <span class="game-info">בוסטון - מיאמי | **סימון: 1 (-5)** | 02:30 | יחס ממוצע: 3.50</span>
             </div>
-            <div class="method-box" style="border-right-color: #ff3300;">
+            <div class="method-box" style="border-right-color: var(--primary);">
                 <span class="amount-tag">86 ₪</span>
                 <span class="method-name">🔥 קומבו (אגרסיבי)</span>
-                <span class="game-info">דאלאס + אוקלהומה | סימון: משולב | יחס ממוצע: 3.50</span>
+                <span class="game-info">דאלאס + אוקלהומה | **סימון: משולב (ניצחונות)** | 03:00 | יחס ממוצע: 3.50</span>
             </div>
             <div class="method-box" style="border-right-color: #ffcc00;">
                 <span class="amount-tag">57 ₪</span>
                 <span class="method-name">🛡️ שיטה 3 מ-4</span>
-                <span class="game-info">גיבוי משולב NBA | יחס ממוצע: 3.50</span>
+                <span class="game-info">גיבוי משולב NBA פלייאוף | יחס ממוצע: 3.50</span>
             </div>
         </div>
     </div>
 
     <div id="schedule" class="tab-content">
-        <h3 style="color:#ff9900;">📺 משחקים מומלצים לשידור היום</h3>
+        <h3 style="color: var(--primary); font-weight:700;">📺 משחקים מומלצים לשידור היום (27/04)</h3>
         <table class="schedule-table">
             <thead>
                 <tr>
@@ -131,47 +330,74 @@
                 </tr>
             </thead>
             <tbody>
-                <tr><td>11:30</td><td>🎾 טניס</td><td>אלקרס - סינר</td><td><span class="live-dot"></span> LIVE</td></tr>
-                <tr><td>13:00</td><td>🎾 טניס</td><td>מדבדב - זברב</td><td>בקרוב</td></tr>
-                <tr><td>14:30</td><td>🎾 טניס</td><td>סאבלנקה - ריבאקינה</td><td>המתנה</td></tr>
-                <tr><td>21:45</td><td>⚽ כדורגל</td><td>לאציו - ורונה</td><td>המתנה</td></tr>
-                <tr><td>22:00</td><td>⚽ כדורגל</td><td>מנצ'סטר סיטי - וולבס</td><td>המתנה</td></tr>
-                <tr><td>22:00</td><td>⚽ כדורגל</td><td>ברצלונה - ולנסיה</td><td>המתנה</td></tr>
-                <tr><td>02:30</td><td>🏀 NBA</td><td>משחקי הלילה</td><td>המתנה</td></tr>
+                <tr><td>11:30</td><td>🎾 טניס</td><td>אלקרס - סינר</td><td>בביצוע</td></tr>
+                <tr><td>13:00</td><td>🎾 טניס</td><td>מדבדב - זברב</td><td>בביצוע</td></tr>
+                <tr><td>14:30</td><td>🎾 טניס</td><td>סאבלנקה - ריבאקינה</td><td>בביצוע</td></tr>
+                <tr><td>21:45</td><td>⚽ כדורגל</td><td>לאציו - ורונה</td><td>טרם החל</td></tr>
+                <tr><td>22:00</td><td>⚽ כדורגל</td><td>מנצ'סטר סיטי - וולבס</td><td><span class="live-dot"></span> LIVE</td></tr>
+                <tr><td>22:00</td><td>⚽ כדורגל</td><td>ברצלונה - ולנסיה</td><td>טרם החל</td></tr>
+                <tr><td>02:30</td><td>🏀 NBA</td><td>בוסטון - מיאמי</td><td>המתנה ללילה</td></tr>
             </tbody>
         </table>
     </div>
 
     <div id="results" class="tab-content">
-        <div style="background:#1e1e1e; padding:20px; border-radius:12px; border-right: 8px solid #00ff00; text-align:right;">
-            <h3 style="color:#00ff00;">סיכום 24 שעות אחרונות</h3>
-            <p>✅ כדורגל: 100% הצלחה בדוח בוקר</p>
-            <p>✅ NBA: עוגן וקומבו תפסו</p>
-            <p>⏳ טניס: משחקים בביצוע</p>
+        <div style="background: rgba(30,30,30,0.7); backdrop-filter: blur(5px); padding:25px; border-radius:15px; border-right: 8px solid var(--quaternary); text-align:right; box-shadow: 0 5px 15px rgba(0,0,0,0.4);">
+            <h3 style="color: var(--quaternary); font-weight:700; margin-top:0;">סיכום 24 שעות אחרונות (מאומת)</h3>
+            <p style="font-size:1.1em; color:#eee;">✅ כדורגל (ליגות בכירות): 100% הצלחה בדוח בוקר</p>
+            <p style="font-size:1.1em; color:#eee;">✅ NBA פלייאוף: עוגן (-5) וקומבו (דאלאס) תפסו</p>
+            <p style="font-size:1.1em; color:#eee;">⏳ טניס (מדריד): משחקי הצהריים בביצוע</p>
         </div>
     </div>
 
     <div id="archive" class="tab-content">
-        <div style="color:#666; margin-top:20px;">היסטוריית דוחות מ-30 הימים האחרונים מאוחסנת כאן.</div>
+        <div style="color:#666; margin-top:30px; font-weight:500; font-size:1.1em;">ארכיון דוחות מילוי (30 הימים האחרונים מאוחסן כאן).</div>
     </div>
 
-    <p class="footer-note">המערכת מסונכרנת מול Flashscore ולוחות שידורים רשמיים.</p>
+    <p class="footer-note">AAA365 PRO מסונכרנת בזמן אמת מול Flashscore ולוחות שידורים רשמיים.</p>
 </div>
 
 <script>
+    // פונקציית מעבר בין טאבים עם אנימציה
     function openTab(tabName) {
         var i, x, tablinks;
         x = document.getElementsByClassName("tab-content");
-        for (i = 0; i < x.length; i++) { x[i].style.display = "none"; }
+        for (i = 0; i < x.length; i++) { 
+            x[i].style.display = "none"; 
+            x[i].style.opacity = "0";
+            x[i].style.transform = "translateY(20px)";
+        }
         tablinks = document.getElementsByClassName("nav-btn");
-        for (i = 0; i < tablinks.length; i++) { tablinks[i].classList.remove("active"); }
-        document.getElementById(tabName).style.display = "block";
+        for (i = 0; i < tablinks.length; i++) { 
+            tablinks[i].classList.remove("active"); 
+        }
+        
+        let currentTab = document.getElementById(tabName);
+        currentTab.style.display = "block";
+        
+        // טריגר לאנימציית כניסה
+        setTimeout(() => {
+            currentTab.style.transition = "all 0.5s ease-out";
+            currentTab.style.opacity = "1";
+            currentTab.style.transform = "translateY(0)";
+        }, 10);
+        
         event.currentTarget.classList.add("active");
     }
 
+    // פונקציית פתיחת/סגירת סעיפי דוחות
     function toggleSection(id) {
         var x = document.getElementById(id);
-        x.style.display = (x.style.display === "block") ? "none" : "block";
+        if (x.style.display === "block") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "block";
+            // אנימציית כניסה עדינה לסעיף
+            x.animate([
+                { opacity: 0, transform: 'translateY(-10px)' },
+                { opacity: 1, transform: 'translateY(0)' }
+            ], { duration: 400, easing: 'ease' });
+        }
     }
 </script>
 
