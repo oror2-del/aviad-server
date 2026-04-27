@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAA365 PRO - דוח מאומת</title>
+    <title>AAA365 PRO - אביעד ובנצי</title>
     <style>
         :root {
             --neon-blue: #00d2ff;
@@ -32,6 +32,15 @@
         }
         .nav-btn.active { background: var(--neon-blue); color: #000; box-shadow: 0 0 20px var(--neon-blue); }
 
+        /* כותרות קטגוריה */
+        .section-header { 
+            background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: 12px;
+            cursor: pointer; margin-top: 15px; border: 1px solid rgba(0, 210, 255, 0.2);
+            display: flex; justify-content: space-between; align-items: center;
+            transition: 0.3s; font-size: 1.3em; font-weight: bold; color: var(--led-white);
+        }
+        .section-content { display: none; padding-top: 10px; }
+
         .method-box { 
             background: linear-gradient(145deg, #101a24, #080f15);
             border: 1px solid rgba(0, 210, 255, 0.2);
@@ -50,8 +59,6 @@
 
         .card-bg { background: rgba(255,255,255,0.02); border-radius: 15px; padding: 25px; border: 1px solid #222; text-align: right; margin-bottom: 15px; }
         .win-label { color: var(--win-green); font-weight: bold; }
-        .blink { animation: blinkEffect 1.5s infinite; }
-        @keyframes blinkEffect { 0% {opacity: 1;} 50% {opacity: 0.4;} 100% {opacity: 1;} }
     </style>
 </head>
 <body>
@@ -61,72 +68,94 @@
     <div class="sub-title">הטיפ היומי של אביעד ובנצי</div>
 
     <div class="nav-menu">
-        <button class="nav-btn active" onclick="openTab('live')">דוח לילה (1,000₪)</button>
+        <button class="nav-btn active" onclick="openTab('live')">דוחות מילוי (1,000₪)</button>
         <button class="nav-btn" onclick="openTab('schedule')">שידורים</button>
         <button class="nav-btn" onclick="openTab('results')">תוצאות</button>
         <button class="nav-btn" onclick="openTab('archive')">ארכיון</button>
     </div>
 
     <div id="live" class="tab-content" style="display: block;">
-        <div class="method-box" style="border-right: 5px solid var(--neon-blue);">
-            <div class="sport-icon">🏀</div>
-            <div class="amount-tag">₪ 143</div>
-            <div class="info-container">
-                <div style="color: var(--neon-blue); font-size: 0.8em; font-weight: bold;">OFFICIAL ANCHOR</div>
-                <div class="game-text">בוסטון סלטיקס - מיאמי היט</div>
-                <div style="color: #aaa;">סימון: 1 (-5) | 02:30</div>
+        
+        <div class="section-header" onclick="toggleSection('nba_rep')" style="border-right: 5px solid var(--neon-blue);">
+            <span>🏀 NBA פלייאוף (לילה מאומת)</span>
+            <span>+</span>
+        </div>
+        <div id="nba_rep" class="section-content" style="display: block;">
+            <div class="method-box">
+                <div class="sport-icon">🏀</div>
+                <div class="amount-tag">₪ 143</div>
+                <div class="info-container">
+                    <div style="color: var(--neon-blue); font-size: 0.8em; font-weight: bold;">OFFICIAL ANCHOR</div>
+                    <div class="game-text">בוסטון סלטיקס - מיאמי היט</div>
+                    <div style="color: #aaa;">סימון: 1 (-5) | 02:30</div>
+                </div>
+            </div>
+            <div class="method-box">
+                <div class="sport-icon">🏀</div>
+                <div class="amount-tag">₪ 86</div>
+                <div class="info-container">
+                    <div style="color: var(--neon-blue); font-size: 0.8em; font-weight: bold;">AGGRESSIVE COMBO</div>
+                    <div class="game-text">אוקלהומה + דאלאס (ניצחונות)</div>
+                    <div style="color: #aaa;">סימון: 1 + 1 (מאוחד) | 03:30</div>
+                </div>
             </div>
         </div>
 
-        <div class="method-box" style="border-right: 5px solid var(--neon-blue);">
-            <div class="sport-icon">🏀</div>
-            <div class="amount-tag">₪ 86</div>
-            <div class="info-container">
-                <div style="color: var(--neon-blue); font-size: 0.8em; font-weight: bold;">AGGRESSIVE COMBO</div>
-                <div class="game-text">אוקלהומה + דאלאס (ניצחונות)</div>
-                <div style="color: #aaa;">סימון: 1 + 1 (מאוחד) | החל מ-03:30</div>
+        <div class="section-header" onclick="toggleSection('soccer_rep')" style="border-right: 5px solid var(--win-green);">
+            <span>⚽ כדורגל על בטוח</span>
+            <span>+</span>
+        </div>
+        <div id="soccer_rep" class="section-content">
+            <div class="method-box">
+                <div class="sport-icon">⚽</div>
+                <div class="amount-tag">₪ 143</div>
+                <div class="info-container">
+                    <div class="game-text">סיטי - וולבס</div>
+                    <div style="color: #aaa;">סימון: 1 | הסתיים</div>
+                </div>
             </div>
         </div>
 
-        <div class="method-box">
-            <div class="sport-icon">🏀</div>
-            <div class="amount-tag">₪ 57</div>
-            <div class="info-container">
-                <div style="color: var(--neon-blue); font-size: 0.8em; font-weight: bold;">SYSTEM 3/4</div>
-                <div class="game-text">אוקלהומה סיטי - מעל 102 נק'</div>
-                <div style="color: #aaa;">סימון: Over 102.5</div>
+        <div class="section-header" onclick="toggleSection('tennis_rep')" style="border-right: 5px solid #ffaa00;">
+            <span>🎾 טניס (ATP מדריד)</span>
+            <span>+</span>
+        </div>
+        <div id="tennis_rep" class="section-content">
+            <div class="method-box">
+                <div class="sport-icon">🎾</div>
+                <div class="amount-tag">₪ 57</div>
+                <div class="info-container">
+                    <div class="game-text">אלקרס - סינר</div>
+                    <div style="color: #aaa;">סימון: 2 | מחר בבוקר</div>
+                </div>
             </div>
         </div>
+
     </div>
 
     <div id="schedule" class="tab-content" style="display: none;">
         <div class="card-bg">
             <h3 style="color: var(--neon-blue);">📺 שידורי הלילה</h3>
             <p>02:30 | בוסטון - מיאמי (5SPORT)</p>
-            <p>03:30 | אוקלהומה - ניו אורלינס</p>
             <p>05:00 | דאלאס - קליפרס (5PLUS)</p>
         </div>
     </div>
 
     <div id="results" class="tab-content" style="display: none;">
         <div class="card-bg">
-            <h3 class="win-label">✅ הצלחות אחרונות (מאיפה שהפסקנו)</h3>
-            <p>● דוח כדורגל (אירופה): <span class="win-label">זכייה מלאה</span> (עוגן + קומבו)</p>
-            <p>● דוח NBA קודם: <span class="win-label">זכייה</span> (שלשות לוקה + עוגן בוסטון)</p>
-            <p>● טניס מדריד: <span style="color: #ffaa00;">בבדיקה / פנלטי</span></p>
+            <h3 class="win-label">✅ הצלחות אחרונות</h3>
+            <p>● כדורגל אירופה: <span class="win-label">זכייה</span></p>
+            <p>● NBA פלייאוף: <span class="win-label">זכייה</span></p>
         </div>
     </div>
 
     <div id="archive" class="tab-content" style="display: none;">
         <div class="card-bg">
-            <h3 style="color: var(--neon-blue);">📂 ארכיון המלצות (השורה התחתונה)</h3>
-            <div style="font-size: 0.9em; line-height: 1.6;">
-                <p><strong>27/04:</strong> בוסטון (-5), שלשות לוקה, סיטי ניצחון. <span class="win-label">[V]</span></p>
-                <p><strong>26/04:</strong> ארסנל ניצחון, אובר שערים ברצלונה. <span class="win-label">[V]</span></p>
-                <p><strong>25/04:</strong> דוח NBA משולב - הצלחה חלקית (שיטה). <span style="color: #888;">[-]</span></p>
-            </div>
+            <h3 style="color: var(--neon-blue);">📂 ארכיון דוחות</h3>
+            <p>סיכום המלצות מ-27/04: הצלחה 100% בעוגן.</p>
         </div>
     </div>
+
 </div>
 
 <script>
@@ -138,6 +167,11 @@
         for (i = 0; i < tablinks.length; i++) { tablinks[i].classList.remove("active"); }
         document.getElementById(tabName).style.display = "block";
         event.currentTarget.classList.add("active");
+    }
+
+    function toggleSection(id) {
+        var x = document.getElementById(id);
+        x.style.display = (x.style.display === "block") ? "none" : "block";
     }
 </script>
 </body>
