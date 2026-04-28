@@ -3,135 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAA365 PRO - Dashboard</title>
+    <title>AAA365 PRO - COMMAND CENTER</title>
     <style>
         :root {
             --neon-blue: #00d2ff;
-            --win-green: #00ff88;
+            --led-white: #ffffff;
             --bg-black: #050a0f;
+            --win-green: #00ff88;
+            --card-bg: rgba(255, 255, 255, 0.03);
         }
 
-        body { 
-            font-family: 'Segoe UI', sans-serif;
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
             background-color: var(--bg-black);
-            color: #fff; margin: 0; padding: 20px; text-align: center;
-            background-image: radial-gradient(circle at top right, rgba(0, 210, 255, 0.05), transparent),
-                              radial-gradient(circle at bottom left, rgba(0, 255, 136, 0.05), transparent);
+            color: white; margin: 0; padding: 0;
+            background-image: radial-gradient(circle at top right, rgba(0, 210, 255, 0.05), transparent);
         }
 
-        .container { max-width: 900px; margin: auto; }
-        
-        .header-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 30px; border-radius: 20px; margin-bottom: 30px;
+        /* תיבה 2: תפריט עליון */
+        .top-nav {
+            position: sticky; top: 0; z-index: 1000;
+            background: rgba(5, 10, 15, 0.9);
             backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 210, 255, 0.2);
+            padding: 15px; display: flex; justify-content: center; gap: 10px;
         }
 
-        .main-title { font-size: 3.5em; font-weight: 900; margin: 0; text-shadow: 0 0 20px var(--neon-blue); }
-
-        .nav-menu { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; }
-        .nav-btn { 
-            background: transparent; color: #fff; border: 1px solid var(--neon-blue);
-            padding: 12px 25px; border-radius: 10px; cursor: pointer; transition: 0.3s;
+        .nav-btn {
+            background: transparent; color: white; border: 1px solid var(--neon-blue);
+            padding: 8px 18px; border-radius: 8px; cursor: pointer; font-weight: 600;
         }
-        .nav-btn.active { background: var(--neon-blue); color: #000; font-weight: bold; }
 
-        /* קטגוריות */
-        .category-shelf { 
-            background: rgba(255, 255, 255, 0.02); border-radius: 15px; 
-            margin-bottom: 20px; overflow: hidden; border: 1px solid #1a1a1a;
+        .nav-btn.active { background: var(--neon-blue); color: black; }
+
+        /* תיבה 5: מחשבון תקציב */
+        .budget-bar {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px; text-align: center; border-bottom: 1px solid #1a1a1a;
         }
+        .budget-input {
+            background: transparent; border: 1px solid var(--neon-blue);
+            color: var(--neon-blue); font-weight: bold; width: 80px; text-align: center;
+            border-radius: 5px; font-size: 1.1em;
+        }
+
+        .container { max-width: 800px; margin: 20px auto; padding: 0 15px; }
+
+        /* תיבה 3: קטגוריות מתקפלות */
+        .shelf { border-radius: 12px; margin-bottom: 15px; overflow: hidden; border: 1px solid #1a1a1a; }
         .shelf-header {
-            padding: 20px; cursor: pointer; display: flex; justify-content: space-between;
-            background: rgba(255, 255, 255, 0.03); font-weight: bold; font-size: 1.2em;
+            background: var(--card-bg); padding: 15px; cursor: pointer;
+            display: flex; justify-content: space-between; font-weight: bold;
         }
 
-        .method-box { 
-            display: flex; align-items: center; padding: 20px; 
-            border-bottom: 1px solid #1a1a1a; transition: 0.3s;
-        }
-        .method-box:last-child { border-bottom: none; }
-
-        .amount-tag { 
-            font-size: 1.5em; font-weight: 900; min-width: 100px;
-            padding: 10px; border: 2px solid #fff; border-radius: 12px;
-            box-shadow: 0 0 15px rgba(255,255,255,0.2); margin-left: 20px;
+        /* תיבה 4: כרטיסיית משחק */
+        .game-card {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 20px; border-bottom: 1px solid #1a1a1a;
+            display: flex; align-items: center; justify-content: space-between;
         }
 
-        .game-info { text-align: right; flex-grow: 1; }
-        .status-badge { 
-            padding: 4px 12px; border-radius: 20px; font-size: 0.8em; font-weight: bold;
-            margin-bottom: 5px; display: inline-block;
+        .game-main { flex-grow: 1; text-align: right; padding-right: 20px; }
+        
+        /* הריבוע הזוהר והקטן שביקשת */
+        .amount-box {
+            border: 2px solid var(--led-white);
+            color: var(--led-white);
+            padding: 8px 12px; border-radius: 8px;
+            font-weight: 900; font-size: 1.1em;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            min-width: 60px; text-align: center;
         }
-        .status-win { background: var(--win-green); color: #000; }
-        .status-pending { background: #555; color: #fff; }
 
-        .blink { animation: blinker 1.5s linear infinite; }
-        @keyframes blinker { 50% { opacity: 0; } }
+        .copy-btn { background: #25D366; border: none; border-radius: 50%; width: 35px; height: 35px; cursor: pointer; }
+
+        .hidden { display: none; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="header-card">
-        <h1 class="main-title">AAA365 PRO</h1>
-        <p style="color: var(--neon-blue); letter-spacing: 2px;">MANAGEMENT DASHBOARD | AVIAD & BENZI</p>
-    </div>
+<div class="top-nav">
+    <button class="nav-btn active" onclick="showTab('board')">📊 הלוח</button>
+    <button class="nav-btn" onclick="showTab('live')">🎯 מעקב חי</button>
+    <button class="nav-btn" onclick="showTab('tv')">📺 שידורים</button>
+    <button class="nav-btn" onclick="showTab('archive')">🏆 ארכיון</button>
+</div>
 
-    <div class="nav-menu">
-        <button class="nav-btn active">דוחות מילוי</button>
-        <button class="nav-btn">תוצאות חיות</button>
-        <button class="nav-btn">ארכיון</button>
-    </div>
+<div class="budget-bar">
+    תקציב יומי: <input type="number" class="budget-input" value="1000" id="dailyBudget" oninput="updateAmounts()"> ₪
+</div>
 
-    <div class="category-shelf">
-        <div class="shelf-header" style="border-right: 5px solid var(--neon-blue);">
-            <span>🏀 NBA PLAYOFFS (LATEST REPORT)</span>
-            <span class="blink" style="color: var(--neon-blue);">● LIVE UPDATE</span>
+<div class="container" id="mainContent">
+    <div id="tab-board">
+        <div style="background: linear-gradient(90deg, #00d2ff, #00ff88); color: black; padding: 15px; border-radius: 12px; margin-bottom: 20px; font-weight: 900;">
+            🔥 המלצת האלגוריתם היומית: עוגן כפול NBA + סינר
         </div>
-        <div class="shelf-content">
-            <div class="method-box">
-                <div class="amount-tag" style="border-color: var(--win-green); color: var(--win-green);">V</div>
-                <div class="game-info">
-                    <span class="status-badge status-win">ניצח ✅</span>
-                    <div style="font-size: 1.3em; font-weight: bold;">אוקלהומה סיטי - ניו אורלינס</div>
-                    <div style="color: #888;">תוצאה סופית: 131:122</div>
-                </div>
-            </div>
-            <div class="method-box">
-                <div class="amount-tag" style="border-color: var(--win-green); color: var(--win-green);">V</div>
-                <div class="game-info">
-                    <span class="status-badge status-win">ניצח ✅</span>
-                    <div style="font-size: 1.3em; font-weight: bold;">מינסוטה - פיניקס סאנס</div>
-                    <div style="color: #888;">תוצאה סופית: 125:113</div>
-                </div>
-            </div>
-            <div class="method-box">
-                <div class="amount-tag">₪ 143</div>
-                <div class="game-info">
-                    <span class="status-badge status-pending">ממתין...</span>
-                    <div style="font-size: 1.3em; font-weight: bold;">בוסטון סלטיקס - פילדלפיה</div>
-                    <div style="color: #888;">שריקת פתיחה: 02:30 | עוגן מרכזי</div>
+
+        <div class="shelf">
+            <div class="shelf-header" onclick="toggleShelf('nba')">🏀 NBA Playoff Center <span>▼</span></div>
+            <div id="nba-content">
+                <div class="game-card">
+                    <button class="copy-btn">💬</button>
+                    <div class="game-main">
+                        <div style="font-weight: bold; font-size: 1.2em;">בוסטון - פילדלפיה</div>
+                        <div style="color: #888; font-size: 0.9em;">שעה: 02:30 | סימון: 1-</div>
+                    </div>
+                    <div class="amount-box" data-ratio="0.143">143</div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="category-shelf">
-        <div class="shelf-header" style="border-right: 5px solid var(--win-green);">
-            <span>⚽ כדורגל על בטוח</span>
-            <span>+</span>
+        <div class="shelf">
+            <div class="shelf-header" onclick="toggleShelf('soccer')">⚽ Soccer Elite <span>▼</span></div>
+        </div>
+        
+        <div class="shelf">
+            <div class="shelf-header" onclick="toggleShelf('tennis')">🎾 Tennis Masters <span>▼</span></div>
         </div>
     </div>
 
-    <div class="category-shelf">
-        <div class="shelf-header" style="border-right: 5px solid #ffaa00;">
-            <span>🎾 טניס (ATP MADRID)</span>
-            <span>+</span>
+    <div id="tab-tv" class="hidden">
+        <h2>📺 לוח שידורים הלילה</h2>
+        <div class="game-card">
+            <div class="game-main">
+                <div style="font-weight: bold;">בוסטון נגד פילדלפיה</div>
+                <div style="color: var(--neon-blue);">ערוץ: ספורט 5 (55) | 02:30</div>
+            </div>
         </div>
     </div>
 </div>
+
+<script>
+    function toggleShelf(id) {
+        const content = document.getElementById(id + '-content');
+        content.classList.toggle('hidden');
+    }
+
+    function showTab(tabId) {
+        document.querySelectorAll('[id^="tab-"]').forEach(el => el.classList.add('hidden'));
+        document.getElementById('tab-' + tabId).classList.remove('hidden');
+        document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+    }
+
+    function updateAmounts() {
+        const budget = document.getElementById('dailyBudget').value;
+        document.querySelectorAll('.amount-box').forEach(box => {
+            const ratio = box.getAttribute('data-ratio');
+            box.innerText = Math.floor(budget * ratio);
+        });
+    }
+</script>
 
 </body>
 </html>
