@@ -11,6 +11,7 @@
             --bg-black: #050a0f;
             --win-green: #00ff88;
             --card-bg: rgba(255, 255, 255, 0.03);
+            --gold: #ffd700;
         }
 
         body {
@@ -20,64 +21,80 @@
             background-image: radial-gradient(circle at top right, rgba(0, 210, 255, 0.05), transparent);
         }
 
-        /* תיבה 2: תפריט עליון */
+        /* תפריט עליון קבוע */
         .top-nav {
             position: sticky; top: 0; z-index: 1000;
-            background: rgba(5, 10, 15, 0.9);
+            background: rgba(5, 10, 15, 0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 210, 255, 0.2);
-            padding: 15px; display: flex; justify-content: center; gap: 10px;
+            border-bottom: 1px solid rgba(0, 210, 255, 0.3);
+            padding: 15px; display: flex; justify-content: center; gap: 12px;
         }
 
         .nav-btn {
             background: transparent; color: white; border: 1px solid var(--neon-blue);
-            padding: 8px 18px; border-radius: 8px; cursor: pointer; font-weight: 600;
+            padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.3s;
         }
 
-        .nav-btn.active { background: var(--neon-blue); color: black; }
+        .nav-btn.active { background: var(--neon-blue); color: black; box-shadow: 0 0 15px var(--neon-blue); }
 
-        /* תיבה 5: מחשבון תקציב */
+        /* מחשבון תקציב */
         .budget-bar {
             background: rgba(255, 255, 255, 0.05);
-            padding: 10px; text-align: center; border-bottom: 1px solid #1a1a1a;
+            padding: 15px; text-align: center; border-bottom: 1px solid #1a1a1a;
+            font-size: 1.1em;
         }
         .budget-input {
-            background: transparent; border: 1px solid var(--neon-blue);
-            color: var(--neon-blue); font-weight: bold; width: 80px; text-align: center;
-            border-radius: 5px; font-size: 1.1em;
+            background: #000; border: 1px solid var(--neon-blue);
+            color: var(--neon-blue); font-weight: bold; width: 100px; text-align: center;
+            border-radius: 5px; font-size: 1.2em; padding: 5px;
         }
 
-        .container { max-width: 800px; margin: 20px auto; padding: 0 15px; }
+        .container { max-width: 800px; margin: 20px auto; padding: 0 15px; padding-bottom: 50px; }
 
-        /* תיבה 3: קטגוריות מתקפלות */
-        .shelf { border-radius: 12px; margin-bottom: 15px; overflow: hidden; border: 1px solid #1a1a1a; }
+        /* המלצת הזהב */
+        .gold-recommendation {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
+            border: 2px solid var(--gold);
+            padding: 20px; border-radius: 15px; margin-bottom: 25px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+            position: relative; overflow: hidden;
+        }
+        .gold-badge {
+            background: var(--gold); color: black; padding: 4px 12px;
+            font-weight: 900; border-radius: 5px; font-size: 0.8em; margin-bottom: 10px; display: inline-block;
+        }
+
+        /* קטגוריות מתקפלות */
+        .shelf { border-radius: 12px; margin-bottom: 15px; overflow: hidden; border: 1px solid #1a1a1a; background: #0a0f14; }
         .shelf-header {
-            background: var(--card-bg); padding: 15px; cursor: pointer;
-            display: flex; justify-content: space-between; font-weight: bold;
+            background: var(--card-bg); padding: 18px; cursor: pointer;
+            display: flex; justify-content: space-between; font-weight: bold; font-size: 1.1em;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        /* תיבה 4: כרטיסיית משחק */
+        /* כרטיסיית משחק */
         .game-card {
-            background: rgba(255, 255, 255, 0.02);
-            padding: 20px; border-bottom: 1px solid #1a1a1a;
+            background: rgba(255, 255, 255, 0.01);
+            padding: 18px; border-bottom: 1px solid #1a1a1a;
             display: flex; align-items: center; justify-content: space-between;
         }
 
-        .game-main { flex-grow: 1; text-align: right; padding-right: 20px; }
+        .game-main { flex-grow: 1; text-align: right; padding-right: 15px; }
         
-        /* הריבוע הזוהר והקטן שביקשת */
         .amount-box {
-            border: 2px solid var(--led-white);
+            border: 1.5px solid var(--led-white);
             color: var(--led-white);
-            padding: 8px 12px; border-radius: 8px;
-            font-weight: 900; font-size: 1.1em;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-            min-width: 60px; text-align: center;
+            padding: 6px 10px; border-radius: 6px;
+            font-weight: 800; font-size: 1em;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+            min-width: 55px; text-align: center;
         }
 
-        .copy-btn { background: #25D366; border: none; border-radius: 50%; width: 35px; height: 35px; cursor: pointer; }
+        .copy-btn { background: #25D366; border: none; border-radius: 50%; width: 32px; height: 32px; cursor: pointer; color: white; font-weight: bold; }
 
         .hidden { display: none; }
+        .live-tag { color: var(--win-green); font-size: 0.8em; font-weight: bold; animation: blinker 1.5s linear infinite; }
+        @keyframes blinker { 50% { opacity: 0; } }
     </style>
 </head>
 <body>
@@ -90,44 +107,89 @@
 </div>
 
 <div class="budget-bar">
-    תקציב יומי: <input type="number" class="budget-input" value="1000" id="dailyBudget" oninput="updateAmounts()"> ₪
+    תקציב לניהול: <input type="number" class="budget-input" value="1000" id="dailyBudget" oninput="updateAmounts()"> ₪
 </div>
 
 <div class="container" id="mainContent">
     <div id="tab-board">
-        <div style="background: linear-gradient(90deg, #00d2ff, #00ff88); color: black; padding: 15px; border-radius: 12px; margin-bottom: 20px; font-weight: 900;">
-            🔥 המלצת האלגוריתם היומית: עוגן כפול NBA + סינר
+        <div class="gold-recommendation">
+            <span class="gold-badge">🏆 המלצת הזהב (חובה למלא)</span>
+            <div style="font-size: 1.2em; font-weight: bold; color: var(--gold);">עוגן משולש: בוסטון + פ.ס.ז' + סינר</div>
+            <div style="font-size: 0.9em; color: #ccc; margin-top: 5px;">יחס משוער: 3.45 | רמת ביטחון: 96%</div>
         </div>
 
         <div class="shelf">
-            <div class="shelf-header" onclick="toggleShelf('nba')">🏀 NBA Playoff Center <span>▼</span></div>
-            <div id="nba-content">
+            <div class="shelf-header" style="border-right: 5px solid var(--neon-blue);" onclick="toggleShelf('nba')">🏀 NBA Playoff Center <span>▼</span></div>
+            <div id="nba-content" class="hidden">
                 <div class="game-card">
-                    <button class="copy-btn">💬</button>
+                    <button class="copy-btn">📑</button>
                     <div class="game-main">
-                        <div style="font-weight: bold; font-size: 1.2em;">בוסטון - פילדלפיה</div>
-                        <div style="color: #888; font-size: 0.9em;">שעה: 02:30 | סימון: 1-</div>
+                        <div style="font-weight: bold;">בוסטון סלטיקס - פילדלפיה</div>
+                        <div style="color: #aaa; font-size: 0.85em;">02:30 | סימון: 1- | יחס: 1.65</div>
                     </div>
                     <div class="amount-box" data-ratio="0.143">143</div>
+                </div>
+                <div class="game-card">
+                    <button class="copy-btn">📑</button>
+                    <div class="game-main">
+                        <div style="font-weight: bold;">סן אנטוניו - פורטלנד</div>
+                        <div style="color: #aaa; font-size: 0.85em;">04:30 | סימון: 1 | יחס: 1.30</div>
+                    </div>
+                    <div class="amount-box" data-ratio="0.086">86</div>
                 </div>
             </div>
         </div>
 
         <div class="shelf">
-            <div class="shelf-header" onclick="toggleShelf('soccer')">⚽ Soccer Elite <span>▼</span></div>
+            <div class="shelf-header" style="border-right: 5px solid var(--win-green);" onclick="toggleShelf('soccer')">⚽ Soccer Elite (Champions) <span>▼</span></div>
+            <div id="soccer-content" class="hidden">
+                <div class="game-card">
+                    <button class="copy-btn">📑</button>
+                    <div class="game-main">
+                        <div style="font-weight: bold;">פ.ס.ז' - באיירן מינכן</div>
+                        <div style="color: #aaa; font-size: 0.85em;">22:00 | סימון: 1X (כפול) | יחס: 1.45</div>
+                    </div>
+                    <div class="amount-box" data-ratio="0.143">143</div>
+                </div>
+                <div class="game-card">
+                    <button class="copy-btn">📑</button>
+                    <div class="game-main">
+                        <div style="font-weight: bold;">שערים: פ.ס.ז' - באיירן</div>
+                        <div style="color: #aaa; font-size: 0.85em;">Over 2.5 שערים | יחס: 1.55</div>
+                    </div>
+                    <div class="amount-box" data-ratio="0.057">57</div>
+                </div>
+            </div>
         </div>
-        
+
         <div class="shelf">
-            <div class="shelf-header" onclick="toggleShelf('tennis')">🎾 Tennis Masters <span>▼</span></div>
+            <div class="shelf-header" style="border-right: 5px solid #ffaa00;" onclick="toggleShelf('tennis')">🎾 Tennis Masters (Madrid) <span>▼</span></div>
+            <div id="tennis-content" class="hidden">
+                <div class="game-card">
+                    <button class="copy-btn">📑</button>
+                    <div class="game-main">
+                        <div style="font-weight: bold;">יאניק סינר - קארן חצ'אנוב</div>
+                        <div style="color: #aaa; font-size: 0.85em;">16:00 | סימון: 1 (ניצחון) | יחס: 1.25</div>
+                    </div>
+                    <div class="amount-box" data-ratio="0.086">86</div>
+                </div>
+            </div>
         </div>
     </div>
 
     <div id="tab-tv" class="hidden">
-        <h2>📺 לוח שידורים הלילה</h2>
+        <h2 style="color: var(--neon-blue);">📺 איפה רואים הלילה?</h2>
         <div class="game-card">
             <div class="game-main">
-                <div style="font-weight: bold;">בוסטון נגד פילדלפיה</div>
-                <div style="color: var(--neon-blue);">ערוץ: ספורט 5 (55) | 02:30</div>
+                <div>פ.ס.ז' נגד באיירן</div>
+                <div style="color: #aaa;">22:00 | ספורט 5 (55)</div>
+            </div>
+            <span class="live-tag">LIVE</span>
+        </div>
+        <div class="game-card">
+            <div class="game-main">
+                <div>בוסטון נגד פילדלפיה</div>
+                <div style="color: #aaa;">02:30 | 5PLUS (56)</div>
             </div>
         </div>
     </div>
@@ -137,13 +199,16 @@
     function toggleShelf(id) {
         const content = document.getElementById(id + '-content');
         content.classList.toggle('hidden');
+        const arrow = event.currentTarget.querySelector('span');
+        arrow.innerText = content.classList.contains('hidden') ? '▼' : '▲';
     }
 
     function showTab(tabId) {
         document.querySelectorAll('[id^="tab-"]').forEach(el => el.classList.add('hidden'));
         document.getElementById('tab-' + tabId).classList.remove('hidden');
         document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-        event.target.classList.add('active');
+        const activeBtn = Array.from(document.querySelectorAll('.nav-btn')).find(btn => btn.innerText.includes(event.target.innerText));
+        if(activeBtn) activeBtn.classList.add('active');
     }
 
     function updateAmounts() {
@@ -153,6 +218,9 @@
             box.innerText = Math.floor(budget * ratio);
         });
     }
+
+    // הפעלה ראשונית של המחשבון
+    updateAmounts();
 </script>
 
 </body>
