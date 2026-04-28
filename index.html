@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAA365 PRO - TEMPLATE</title>
+    <title>AAA365 PRO - SUPREME COMMAND</title>
     <style>
         :root {
             --neon-blue: #00d2ff;
@@ -20,10 +20,9 @@
                 radial-gradient(circle at top right, rgba(0, 210, 255, 0.1), transparent),
                 url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
             background-attachment: fixed;
-            overflow-x: hidden;
         }
 
-        /* אלמנטים גרפיים מוזהבים ברקע */
+        /* אלמנטים גרפיים ברקע */
         .bg-icon {
             position: fixed; font-size: 20vw; opacity: 0.03; z-index: -1;
             filter: sepia(1) saturate(3) brightness(1.2);
@@ -41,7 +40,6 @@
             background: transparent; color: white; border: 2px solid var(--neon-blue);
             padding: 10px 25px; border-radius: 50px; cursor: pointer;
             font-weight: 800; transition: 0.3s; font-size: 0.9em;
-            box-shadow: 0 0 10px rgba(0, 210, 255, 0.2);
         }
 
         .nav-btn.active { 
@@ -49,49 +47,53 @@
             box-shadow: 0 0 25px var(--neon-blue); 
         }
 
-        /* אזור תקציב מעוצב */
-        .budget-section { padding: 30px 15px; text-align: center; }
-        .budget-title { 
-            display: block; font-size: 1.2em; font-weight: 200; 
-            letter-spacing: 4px; margin-bottom: 10px; color: #fff;
+        /* לוגו הטיפ היומי - חדש! */
+        .daily-tip-header {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 20px;
         }
-        .budget-input-wrapper {
-            display: inline-block; position: relative;
+
+        .logo-text {
+            font-size: 3.5em;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: #fff;
+            text-shadow: 
+                0 0 10px var(--gold),
+                0 0 20px var(--gold),
+                0 0 40px #ffaa00;
+            display: block;
+            margin-bottom: 5px;
         }
+
+        .logo-subtext {
+            color: var(--gold);
+            letter-spacing: 8px;
+            font-size: 1.2em;
+            font-weight: 300;
+            opacity: 0.8;
+        }
+
+        /* תקציב */
+        .budget-section { padding: 20px; text-align: center; }
         .budget-input {
             background: rgba(0,0,0,0.5); border: 2px solid var(--neon-blue);
             color: var(--neon-blue); font-weight: bold; width: 130px;
             text-align: center; border-radius: 12px; font-size: 1.5em; padding: 10px;
-            box-shadow: inset 0 0 15px rgba(0, 210, 255, 0.2);
         }
 
         .container { max-width: 800px; margin: 0 auto; padding-bottom: 100px; }
 
-        /* שבלונת קטגוריה (מדף) */
         .shelf-template {
             border-radius: 15px; margin-bottom: 25px; overflow: hidden;
             background: rgba(15, 20, 25, 0.85);
             border: 1px solid rgba(255,255,255,0.1);
-            transition: 0.3s;
         }
         .shelf-header {
             padding: 20px; cursor: pointer; display: flex; justify-content: space-between;
-            align-items: center; font-weight: 900; font-size: 1.2em;
-            background: rgba(255,255,255,0.03);
-        }
-
-        /* שבלונת כרטיסיית משחק */
-        .game-card-template {
-            padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.05);
-            display: flex; align-items: center; justify-content: space-between;
-        }
-
-        /* הריבוע הזוהר הקטן */
-        .amount-box-template {
-            border: 2px solid #fff; color: #fff;
-            padding: 8px 12px; border-radius: 8px; font-weight: 900;
-            box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
-            min-width: 55px; text-align: center;
+            align-items: center; font-weight: 900; background: rgba(255,255,255,0.03);
         }
 
         .hidden { display: none; }
@@ -109,42 +111,27 @@
     <button class="nav-btn" onclick="showTab('archive')">ארכיון</button>
 </div>
 
+<div class="daily-tip-header">
+    <span class="logo-text">הטיפ היומי</span>
+    <span class="logo-subtext">AAA365 ALGORITHM</span>
+</div>
+
 <div class="budget-section">
-    <span class="budget-title">תקציב פעיל לקטגוריה</span>
-    <div class="budget-input-wrapper">
-        <input type="number" class="budget-input" value="1000">
-    </div>
+    <input type="number" class="budget-input" value="1000">
 </div>
 
 <div class="container">
     <div id="tab-board">
-        
-        <div class="shelf-template" style="border-color: var(--neon-blue); box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);">
-            <div class="shelf-header">
-                <span>כותרת קטגוריה (ניאון)</span>
+        <div class="shelf-template" style="border-color: var(--gold); box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);">
+            <div class="shelf-header" style="color: var(--gold); font-size: 1.4em;">
+                <span>🌟 המלצת המערכת</span>
                 <span>▼</span>
             </div>
-            <div class="game-card-template">
-                <div style="text-align:right; flex-grow:1;">
-                    <div style="font-weight:bold;">שם המשחק / אירוע</div>
-                    <div style="color:#888; font-size:0.9em;">פרטים נוספים | סימון | שעה</div>
-                </div>
-                <div class="amount-box-template">₪₪₪</div>
+            <div style="padding: 20px; text-align: center; font-style: italic; color: #ccc;">
+                כאן יופיע הנתון של הטיפ הכי חזק להיום...
             </div>
         </div>
-
-        <div class="shelf-template" style="border-color: var(--gold); animation: pulse 2s infinite;">
-            <div class="shelf-header" style="color: var(--gold);">
-                <span>קטגוריית זהב (דופק)</span>
-                <span>▼</span>
-            </div>
-        </div>
-
     </div>
-
-    <div id="tab-live" class="hidden"><h2 style="text-align:center;">מעקב חי - שבלונה</h2></div>
-    <div id="tab-tv" class="hidden"><h2 style="text-align:center;">שידורים - שבלונה</h2></div>
-    <div id="tab-archive" class="hidden"><h2 style="text-align:center;">ארכיון - שבלונה</h2></div>
 </div>
 
 <script>
@@ -154,17 +141,6 @@
         document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
         event.target.classList.add('active');
     }
-
-    // אנימציית דופק לזהב
-    const style = document.createElement('style');
-    style.innerHTML = `
-        @keyframes pulse {
-            0% { box-shadow: 0 0 5px #ffd700; }
-            50% { box-shadow: 0 0 20px #ffd700; }
-            100% { box-shadow: 0 0 5px #ffd700; }
-        }
-    `;
-    document.head.appendChild(style);
 </script>
 
 </body>
