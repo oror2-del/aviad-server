@@ -1,9 +1,137 @@
-<div class="method-box" style="border-right: 5px solid #ffaa00;">
-    <div class="sport-icon">🎾</div>
-    <div class="amount-tag">₪ 57</div>
-    <div class="info-container">
-        <div class="method-label" style="color: #ffaa00;">ELITE TENNIS PICK</div>
-        <div class="game-text">יאניק סינר - חצ'אנוב</div>
-        <div class="game-details">סימון: 2 (ניצחון סינר) | ATP Madrid</div>
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAA365 PRO - Dashboard</title>
+    <style>
+        :root {
+            --neon-blue: #00d2ff;
+            --win-green: #00ff88;
+            --bg-black: #050a0f;
+        }
+
+        body { 
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-black);
+            color: #fff; margin: 0; padding: 20px; text-align: center;
+            background-image: radial-gradient(circle at top right, rgba(0, 210, 255, 0.05), transparent),
+                              radial-gradient(circle at bottom left, rgba(0, 255, 136, 0.05), transparent);
+        }
+
+        .container { max-width: 900px; margin: auto; }
+        
+        .header-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px; border-radius: 20px; margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .main-title { font-size: 3.5em; font-weight: 900; margin: 0; text-shadow: 0 0 20px var(--neon-blue); }
+
+        .nav-menu { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; }
+        .nav-btn { 
+            background: transparent; color: #fff; border: 1px solid var(--neon-blue);
+            padding: 12px 25px; border-radius: 10px; cursor: pointer; transition: 0.3s;
+        }
+        .nav-btn.active { background: var(--neon-blue); color: #000; font-weight: bold; }
+
+        /* קטגוריות */
+        .category-shelf { 
+            background: rgba(255, 255, 255, 0.02); border-radius: 15px; 
+            margin-bottom: 20px; overflow: hidden; border: 1px solid #1a1a1a;
+        }
+        .shelf-header {
+            padding: 20px; cursor: pointer; display: flex; justify-content: space-between;
+            background: rgba(255, 255, 255, 0.03); font-weight: bold; font-size: 1.2em;
+        }
+
+        .method-box { 
+            display: flex; align-items: center; padding: 20px; 
+            border-bottom: 1px solid #1a1a1a; transition: 0.3s;
+        }
+        .method-box:last-child { border-bottom: none; }
+
+        .amount-tag { 
+            font-size: 1.5em; font-weight: 900; min-width: 100px;
+            padding: 10px; border: 2px solid #fff; border-radius: 12px;
+            box-shadow: 0 0 15px rgba(255,255,255,0.2); margin-left: 20px;
+        }
+
+        .game-info { text-align: right; flex-grow: 1; }
+        .status-badge { 
+            padding: 4px 12px; border-radius: 20px; font-size: 0.8em; font-weight: bold;
+            margin-bottom: 5px; display: inline-block;
+        }
+        .status-win { background: var(--win-green); color: #000; }
+        .status-pending { background: #555; color: #fff; }
+
+        .blink { animation: blinker 1.5s linear infinite; }
+        @keyframes blinker { 50% { opacity: 0; } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-card">
+        <h1 class="main-title">AAA365 PRO</h1>
+        <p style="color: var(--neon-blue); letter-spacing: 2px;">MANAGEMENT DASHBOARD | AVIAD & BENZI</p>
+    </div>
+
+    <div class="nav-menu">
+        <button class="nav-btn active">דוחות מילוי</button>
+        <button class="nav-btn">תוצאות חיות</button>
+        <button class="nav-btn">ארכיון</button>
+    </div>
+
+    <div class="category-shelf">
+        <div class="shelf-header" style="border-right: 5px solid var(--neon-blue);">
+            <span>🏀 NBA PLAYOFFS (LATEST REPORT)</span>
+            <span class="blink" style="color: var(--neon-blue);">● LIVE UPDATE</span>
+        </div>
+        <div class="shelf-content">
+            <div class="method-box">
+                <div class="amount-tag" style="border-color: var(--win-green); color: var(--win-green);">V</div>
+                <div class="game-info">
+                    <span class="status-badge status-win">ניצח ✅</span>
+                    <div style="font-size: 1.3em; font-weight: bold;">אוקלהומה סיטי - ניו אורלינס</div>
+                    <div style="color: #888;">תוצאה סופית: 131:122</div>
+                </div>
+            </div>
+            <div class="method-box">
+                <div class="amount-tag" style="border-color: var(--win-green); color: var(--win-green);">V</div>
+                <div class="game-info">
+                    <span class="status-badge status-win">ניצח ✅</span>
+                    <div style="font-size: 1.3em; font-weight: bold;">מינסוטה - פיניקס סאנס</div>
+                    <div style="color: #888;">תוצאה סופית: 125:113</div>
+                </div>
+            </div>
+            <div class="method-box">
+                <div class="amount-tag">₪ 143</div>
+                <div class="game-info">
+                    <span class="status-badge status-pending">ממתין...</span>
+                    <div style="font-size: 1.3em; font-weight: bold;">בוסטון סלטיקס - פילדלפיה</div>
+                    <div style="color: #888;">שריקת פתיחה: 02:30 | עוגן מרכזי</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="category-shelf">
+        <div class="shelf-header" style="border-right: 5px solid var(--win-green);">
+            <span>⚽ כדורגל על בטוח</span>
+            <span>+</span>
+        </div>
+    </div>
+
+    <div class="category-shelf">
+        <div class="shelf-header" style="border-right: 5px solid #ffaa00;">
+            <span>🎾 טניס (ATP MADRID)</span>
+            <span>+</span>
+        </div>
     </div>
 </div>
+
+</body>
+</html>
