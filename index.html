@@ -3,181 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAA365 PRO - SUPREME COMMAND</title>
+    <title>AAA365 PRO - TEMPLATE</title>
     <style>
         :root {
             --neon-blue: #00d2ff;
-            --led-white: #ffffff;
-            --bg-black: #050a0f;
             --win-green: #00ff88;
-            --tennis-orange: #ffaa00;
             --gold: #ffd700;
+            --bg-black: #050a0f;
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             background-color: var(--bg-black);
             color: white; margin: 0; padding: 0;
             background-image: 
                 radial-gradient(circle at top right, rgba(0, 210, 255, 0.1), transparent),
-                linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
                 url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
             background-attachment: fixed;
             overflow-x: hidden;
         }
 
-        /* אלמנטים של ספורט מוזהב ברקע */
-        .bg-element {
-            position: fixed; font-size: 25vw; opacity: 0.03; z-index: -1;
-            filter: sepia(1) saturate(5) hue-rotate(10deg);
+        /* אלמנטים גרפיים מוזהבים ברקע */
+        .bg-icon {
+            position: fixed; font-size: 20vw; opacity: 0.03; z-index: -1;
+            filter: sepia(1) saturate(3) brightness(1.2);
         }
 
+        /* תפריט עליון אליפטי */
         .top-nav {
             position: sticky; top: 0; z-index: 1000;
-            background: rgba(5, 10, 15, 0.95);
-            backdrop-filter: blur(20px);
+            background: rgba(5, 10, 15, 0.9); backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(0, 210, 255, 0.3);
             padding: 20px 10px; display: flex; justify-content: center; gap: 10px;
         }
 
         .nav-btn {
             background: transparent; color: white; border: 2px solid var(--neon-blue);
-            padding: 10px 25px; border-radius: 50px; cursor: pointer; font-weight: 800; 
-            transition: 0.3s; font-size: 0.9em;
+            padding: 10px 25px; border-radius: 50px; cursor: pointer;
+            font-weight: 800; transition: 0.3s; font-size: 0.9em;
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.2);
         }
 
-        .nav-btn.active { background: var(--neon-blue); color: black; box-shadow: 0 0 25px var(--neon-blue); }
+        .nav-btn.active { 
+            background: var(--neon-blue); color: black; 
+            box-shadow: 0 0 25px var(--neon-blue); 
+        }
 
-        .budget-bar { padding: 20px; text-align: center; }
-        .budget-label { display: block; font-size: 1.2em; font-weight: 200; letter-spacing: 2px; margin-bottom: 8px; }
+        /* אזור תקציב מעוצב */
+        .budget-section { padding: 30px 15px; text-align: center; }
+        .budget-title { 
+            display: block; font-size: 1.2em; font-weight: 200; 
+            letter-spacing: 4px; margin-bottom: 10px; color: #fff;
+        }
+        .budget-input-wrapper {
+            display: inline-block; position: relative;
+        }
         .budget-input {
-            background: #000; border: 2px solid var(--neon-blue); color: var(--neon-blue);
-            font-weight: bold; width: 110px; text-align: center; border-radius: 10px;
-            font-size: 1.4em; padding: 8px;
+            background: rgba(0,0,0,0.5); border: 2px solid var(--neon-blue);
+            color: var(--neon-blue); font-weight: bold; width: 130px;
+            text-align: center; border-radius: 12px; font-size: 1.5em; padding: 10px;
+            box-shadow: inset 0 0 15px rgba(0, 210, 255, 0.2);
         }
 
-        .container { max-width: 800px; margin: 0 auto; padding: 0 15px 120px 15px; }
+        .container { max-width: 800px; margin: 0 auto; padding-bottom: 100px; }
 
-        .shelf { 
-            border-radius: 15px; margin-bottom: 25px; overflow: hidden; 
-            background: rgba(15, 20, 25, 0.9); border: 1.5px solid rgba(255,255,255,0.1);
+        /* שבלונת קטגוריה (מדף) */
+        .shelf-template {
+            border-radius: 15px; margin-bottom: 25px; overflow: hidden;
+            background: rgba(15, 20, 25, 0.85);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s;
         }
-        .shelf-nba { border-color: var(--neon-blue); box-shadow: 0 0 15px rgba(0, 210, 255, 0.1); }
-        .shelf-soccer { border-color: var(--win-green); box-shadow: 0 0 15px rgba(0, 255, 136, 0.1); }
-        .shelf-gold { border-color: var(--gold); animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { box-shadow: 0 0 5px var(--gold); } 50% { box-shadow: 0 0 20px var(--gold); } 100% { box-shadow: 0 0 5px var(--gold); } }
+        .shelf-header {
+            padding: 20px; cursor: pointer; display: flex; justify-content: space-between;
+            align-items: center; font-weight: 900; font-size: 1.2em;
+            background: rgba(255,255,255,0.03);
+        }
 
-        .shelf-header { padding: 20px; cursor: pointer; display: flex; justify-content: space-between; font-weight: 900; background: rgba(255,255,255,0.03); }
+        /* שבלונת כרטיסיית משחק */
+        .game-card-template {
+            padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex; align-items: center; justify-content: space-between;
+        }
 
-        .game-card { padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: space-between; }
-        
-        .amount-box {
-            border: 2px solid var(--led-white); color: var(--led-white);
+        /* הריבוע הזוהר הקטן */
+        .amount-box-template {
+            border: 2px solid #fff; color: #fff;
             padding: 8px 12px; border-radius: 8px; font-weight: 900;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); min-width: 60px; text-align: center;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+            min-width: 55px; text-align: center;
         }
 
-        .neon-icon { font-style: normal; text-shadow: 0 0 10px var(--neon-blue); margin-left: 10px; }
         .hidden { display: none; }
-        
-        .tab-content { animation: fadeIn 0.5s ease; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
-<div class="bg-element" style="top: 10%; right: -5%;">⚽</div>
-<div class="bg-element" style="bottom: 10%; left: -5%;">🏀</div>
+<div class="bg-icon" style="top: 15%; right: -5%;">⚽</div>
+<div class="bg-icon" style="bottom: 15%; left: -5%;">🏀</div>
 
 <div class="top-nav">
-    <button class="nav-btn active" onclick="showTab('board', this)">הלוח</button>
-    <button class="nav-btn" onclick="showTab('live', this)">מעקב חי</button>
-    <button class="nav-btn" onclick="showTab('tv', this)">שידורים</button>
-    <button class="nav-btn" onclick="showTab('archive', this)">ארכיון</button>
+    <button class="nav-btn active" onclick="showTab('board')">הלוח</button>
+    <button class="nav-btn" onclick="showTab('live')">מעקב חי</button>
+    <button class="nav-btn" onclick="showTab('tv')">שידורים</button>
+    <button class="nav-btn" onclick="showTab('archive')">ארכיון</button>
 </div>
 
-<div class="budget-bar">
-    <span class="budget-label" id="totalSummary">תקציב לקטגוריה (סה"כ ל-4: 4000 ₪)</span>
-    <input type="number" class="budget-input" value="1000" id="dailyBudget" oninput="updateAmounts()">
+<div class="budget-section">
+    <span class="budget-title">תקציב פעיל לקטגוריה</span>
+    <div class="budget-input-wrapper">
+        <input type="number" class="budget-input" value="1000">
+    </div>
 </div>
 
 <div class="container">
-    <div id="tab-board" class="tab-content">
-        <div class="shelf shelf-nba">
-            <div class="shelf-header" onclick="toggleShelf('nba')"><span><i class="neon-icon">NBA</i> Playoff Center</span><span>▼</span></div>
-            <div id="nba-content" class="hidden">
-                <div class="game-card">
-                    <div style="text-align:right; flex-grow:1;"><b>בוסטון - פילדלפיה</b><br><small>02:30 | סימון: 1-</small></div>
-                    <div class="amount-box" data-ratio="0.143">143</div>
+    <div id="tab-board">
+        
+        <div class="shelf-template" style="border-color: var(--neon-blue); box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);">
+            <div class="shelf-header">
+                <span>כותרת קטגוריה (ניאון)</span>
+                <span>▼</span>
+            </div>
+            <div class="game-card-template">
+                <div style="text-align:right; flex-grow:1;">
+                    <div style="font-weight:bold;">שם המשחק / אירוע</div>
+                    <div style="color:#888; font-size:0.9em;">פרטים נוספים | סימון | שעה</div>
                 </div>
+                <div class="amount-box-template">₪₪₪</div>
             </div>
         </div>
 
-        <div class="shelf shelf-soccer">
-            <div class="shelf-header" onclick="toggleShelf('soccer')"><span><i class="neon-icon">SOCCER</i> Champions</span><span>▼</span></div>
-            <div id="soccer-content" class="hidden">
-                <div class="game-card">
-                    <div style="text-align:right; flex-grow:1;"><b>פ.ס.ז' - באיירן</b><br><small>22:00 | סימון: Over 3.5</small></div>
-                    <div class="amount-box" data-ratio="0.143">143</div>
-                </div>
+        <div class="shelf-template" style="border-color: var(--gold); animation: pulse 2s infinite;">
+            <div class="shelf-header" style="color: var(--gold);">
+                <span>קטגוריית זהב (דופק)</span>
+                <span>▼</span>
             </div>
         </div>
 
-        <div class="shelf shelf-gold">
-            <div class="shelf-header" onclick="toggleShelf('gold')"><span style="color:var(--gold);"><i class="neon-icon">GOLD</i> טופס זהב</span><span>▼</span></div>
-            <div id="gold-content">
-                <div class="game-card"><div style="text-align:right; flex-grow:1;"><b>קומבו המנצח</b><br><small>בוסטון + פ.ס.ז' + נדאל</small></div><div class="amount-box" data-ratio="0.250" style="border-color:var(--gold); color:var(--gold);">250</div></div>
-            </div>
-        </div>
     </div>
 
-    <div id="tab-live" class="tab-content hidden">
-        <h2 style="text-align:center; color:var(--win-green);">🎯 מעקב טפסים פעילים</h2>
-        <div class="shelf" style="border-color:var(--win-green); padding:20px;">
-            <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
-                <span>אוקלהומה - ניו אורלינס</span>
-                <span style="color:var(--win-green);">✅ בוצע</span>
-            </div>
-            <div style="display:flex; justify-content:space-between;">
-                <span>מינסוטה - פיניקס</span>
-                <span style="color:var(--win-green);">✅ בוצע</span>
-            </div>
-        </div>
-    </div>
-
-    <div id="tab-tv" class="tab-content hidden">
-        <h2 style="text-align:center;">📺 לוח שידורים</h2>
-        <div class="game-card"><div>פ.ס.ז' - באיירן</div><div style="color:var(--neon-blue);">22:00 | ערוץ 55</div></div>
-        <div class="game-card"><div>בוסטון - פילדלפיה</div><div style="color:var(--neon-blue);">02:30 | ערוץ 56</div></div>
-    </div>
-
-    <div id="tab-archive" class="tab-content hidden">
-        <h2 style="text-align:center;">🏆 היסטוריית זכיות</h2>
-        <div class="shelf" style="padding:20px; text-align:center;">
-            <p>סה"כ רווח חודש אפריל: <span style="color:var(--win-green); font-weight:bold;">12,450 ₪</span></p>
-        </div>
-    </div>
+    <div id="tab-live" class="hidden"><h2 style="text-align:center;">מעקב חי - שבלונה</h2></div>
+    <div id="tab-tv" class="hidden"><h2 style="text-align:center;">שידורים - שבלונה</h2></div>
+    <div id="tab-archive" class="hidden"><h2 style="text-align:center;">ארכיון - שבלונה</h2></div>
 </div>
 
 <script>
-    function toggleShelf(id) { document.getElementById(id + '-content').classList.toggle('hidden'); }
-
-    function showTab(tabId, btn) {
-        document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+    function showTab(tabId) {
+        document.querySelectorAll('[id^="tab-"]').forEach(el => el.classList.add('hidden'));
         document.getElementById('tab-' + tabId).classList.remove('hidden');
-        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+        document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
     }
 
-    function updateAmounts() {
-        const val = document.getElementById('dailyBudget').value;
-        document.getElementById('totalSummary').innerText = `תקציב לקטגוריה (סה"כ ל-4: ${val * 4} ₪)`;
-        document.querySelectorAll('.amount-box').forEach(box => {
-            const ratio = box.getAttribute('data-ratio');
-            box.innerText = Math.floor(val * ratio);
-        });
-    }
-    updateAmounts();
+    // אנימציית דופק לזהב
+    const style = document.createElement('style');
+    style.innerHTML = `
+        @keyframes pulse {
+            0% { box-shadow: 0 0 5px #ffd700; }
+            50% { box-shadow: 0 0 20px #ffd700; }
+            100% { box-shadow: 0 0 5px #ffd700; }
+        }
+    `;
+    document.head.appendChild(style);
 </script>
+
 </body>
 </html>
