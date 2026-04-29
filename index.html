@@ -3,26 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAA365 PRO - SUPREME COMMAND</title>
+    <title>AAA365 PRO - TEMPLATE</title>
     <style>
         :root {
             --neon-blue: #00d2ff;
-            --win-green: #00ff88;
-            --gold: #ffd700;
+            --led-white: #ffffff;
             --bg-black: #050a0f;
-            --tennis-orange: #ffaa00;
+            --win-green: #00ff88;
         }
 
         body {
             font-family: 'Segoe UI', sans-serif;
             background-color: var(--bg-black);
             color: white; margin: 0; padding: 0;
-            background-image: radial-gradient(circle at top right, rgba(0, 210, 255, 0.1), transparent),
+            background-image: radial-gradient(circle at top right, rgba(0, 210, 255, 0.08), transparent),
                               url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
             background-attachment: fixed;
         }
 
-        /* תפריט עליון - תיקון לחצנים */
+        /* תפריט עליון קבוע */
         .top-nav {
             position: sticky; top: 0; z-index: 1000;
             background: rgba(5, 10, 15, 0.95); backdrop-filter: blur(15px);
@@ -32,121 +31,94 @@
 
         .nav-btn {
             background: transparent; color: white; border: 2px solid var(--neon-blue);
-            padding: 10px 25px; border-radius: 50px; cursor: pointer;
-            font-weight: 800; transition: 0.3s; font-size: 0.9em;
-            display: inline-block; width: auto;
+            padding: 10px 25px; border-radius: 50px; cursor: pointer; font-weight: 800;
+            transition: 0.3s; font-size: 0.9em;
         }
 
-        .nav-btn.active { 
-            background: var(--neon-blue); color: black; 
-            box-shadow: 0 0 25px var(--neon-blue); 
-        }
+        .nav-btn.active { background: var(--neon-blue); color: black; box-shadow: 0 0 25px var(--neon-blue); }
 
-        /* לוגו הטיפ היומי */
-        .daily-tip-header { text-align: center; padding: 30px 20px; }
-        .logo-text {
-            font-size: 3.5em; font-weight: 900; text-transform: uppercase;
-            letter-spacing: 5px; color: #fff; text-shadow: 0 0 15px var(--gold);
-        }
-
-        /* תקציב */
-        .budget-section { padding: 10px; text-align: center; }
+        /* אזור הלוגו והתקציב */
+        .header-area { text-align: center; padding: 30px 10px; }
+        .logo-main { font-size: 3em; font-weight: 900; text-shadow: 0 0 15px var(--neon-blue); display: block; }
         .budget-input {
-            background: rgba(0,0,0,0.5); border: 2px solid var(--neon-blue);
-            color: var(--neon-blue); font-weight: bold; width: 130px;
-            text-align: center; border-radius: 12px; font-size: 1.5em; padding: 10px;
+            background: #000; border: 1.5px solid var(--neon-blue);
+            color: var(--neon-blue); font-weight: bold; width: 120px; text-align: center;
+            border-radius: 8px; font-size: 1.4em; padding: 8px; margin-top: 15px;
         }
 
-        .container { max-width: 850px; margin: 0 auto; padding: 20px; padding-bottom: 120px; }
+        .container { max-width: 850px; margin: 0 auto; padding: 15px; padding-bottom: 100px; }
 
-        /* שבלונת קטגוריה */
-        .shelf {
-            border-radius: 15px; margin-bottom: 25px; overflow: hidden;
-            background: rgba(15, 20, 25, 0.9); border: 1.5px solid rgba(255,255,255,0.1);
-        }
-        .shelf-header {
-            padding: 22px; cursor: pointer; display: flex; justify-content: space-between;
-            align-items: center; font-weight: 900; font-size: 1.3em;
-            background: rgba(255,255,255,0.03);
+        /* שבלונת ה"בטון" למשחק - ריקה מנתונים */
+        .game-card {
+            background: rgba(10, 15, 20, 0.9);
+            border: 2px solid rgba(0, 210, 255, 0.3);
+            border-radius: 15px; padding: 25px;
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 20px; position: relative;
         }
 
-        .shelf-nba { border-color: var(--neon-blue); }
-        .shelf-soccer { border-color: var(--win-green); }
-        .shelf-tennis { border-color: var(--tennis-orange); }
-        .shelf-gold { border-color: var(--gold); animation: pulse 2s infinite; }
+        .card-info { flex-grow: 1; text-align: center; }
+        .card-info h3 { margin: 5px 0; font-size: 1.6em; }
+        .card-info p { margin: 2px 0; color: #888; font-size: 0.9em; }
 
-        @keyframes pulse {
-            0% { box-shadow: 0 0 5px var(--gold); }
-            50% { box-shadow: 0 0 25px var(--gold); }
-            100% { box-shadow: 0 0 5px var(--gold); }
+        /* הריבוע הזוהר הקטן */
+        .amount-box {
+            border: 2px solid var(--led-white); color: var(--led-white);
+            padding: 10px 15px; border-radius: 10px; font-weight: 900; font-size: 1.4em;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+            min-width: 70px; text-align: center;
         }
+
+        .tag-anchor { background: rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 5px; font-size: 0.7em; margin-bottom: 10px; display: inline-block; }
 
         .hidden { display: none; }
-        .tab-content { display: block; }
     </style>
 </head>
 <body>
 
 <div class="top-nav">
-    <button class="nav-btn active" onclick="switchTab('board')">הלוח</button>
-    <button class="nav-btn" onclick="switchTab('live')">מעקב חי</button>
-    <button class="nav-btn" onclick="switchTab('tv')">שידורים</button>
-    <button class="nav-btn" onclick="switchTab('archive')">ארכיון</button>
+    <button class="nav-btn active" onclick="tab('board')">הלוח</button>
+    <button class="nav-btn" onclick="tab('live')">מעקב חי</button>
+    <button class="nav-btn" onclick="tab('tv')">שידורים</button>
+    <button class="nav-btn" onclick="tab('archive')">ארכיון</button>
 </div>
 
-<div id="tab-board" class="tab-content">
-    <div class="daily-tip-header">
-        <span class="logo-text">הטיפ היומי</span>
-    </div>
-
-    <div class="budget-section">
-        <input type="number" class="budget-input" value="1000">
-    </div>
-
-    <div class="container">
-        <div class="shelf shelf-gold">
-            <div class="shelf-header" style="color: var(--gold);">
-                <span>🌟 המלצת המערכת (חובה)</span>
-                <span>▲</span>
-            </div>
-        </div>
-
-        <div class="shelf shelf-nba">
-            <div class="shelf-header"><span>🏀 NBA PLAYOFFS</span><span>▼</span></div>
-        </div>
-
-        <div class="shelf shelf-soccer">
-            <div class="shelf-header"><span>⚽ SOCCER ELITE</span><span>▼</span></div>
-        </div>
-
-        <div class="shelf shelf-tennis">
-            <div class="shelf-header"><span>🎾 TENNIS MASTERS</span><span>▼</span></div>
-        </div>
-    </div>
+<div class="header-area">
+    <span class="logo-main">AAA365 PRO</span>
+    <input type="number" class="budget-input" value="1000" id="mainBudget">
 </div>
 
-<div id="tab-live" class="tab-content hidden"><h2 style="text-align:center; padding:50px;">🎯 מעקב טפסים חי</h2></div>
-<div id="tab-tv" class="tab-content hidden"><h2 style="text-align:center; padding:50px;">📺 לוח שידורים</h2></div>
-<div id="tab-archive" class="tab-content hidden"><h2 style="text-align:center; padding:50px;">🏆 ארכיון זכיות</h2></div>
+<div class="container" id="content-area">
+    
+    <h2 style="border-right: 4px solid var(--neon-blue); padding-right: 10px;">🏀 NBA</h2>
+    <div class="game-card">
+        <div style="font-size: 1.5em; opacity: 0.3;">💬</div>
+        <div class="card-info">
+            <span class="tag-anchor">ממתין לעדכון...</span>
+            <h3>משחק טרם הוזן</h3>
+            <p>שעה: --:-- | פירוט נוסף יופיע כאן</p>
+        </div>
+        <div class="amount-box">0</div>
+    </div>
+
+    <h2 style="border-right: 4px solid var(--win-green); padding-right: 10px;">⚽ כדורגל</h2>
+    <div class="game-card" style="border-color: rgba(0, 255, 136, 0.2);">
+        <div style="font-size: 1.5em; opacity: 0.3;">💬</div>
+        <div class="card-info">
+            <span class="tag-anchor">ממתין לעדכון...</span>
+            <h3>משחק טרם הוזן</h3>
+            <p>ליגה: -- | שעה: --:--</p>
+        </div>
+        <div class="amount-box">0</div>
+    </div>
+
+</div>
 
 <script>
-    // פונקציית מעבר טאבים חזקה
-    function switchTab(id) {
-        // הסתרת כל הדפים
-        document.getElementById('tab-board').classList.add('hidden');
-        document.getElementById('tab-live').classList.add('hidden');
-        document.getElementById('tab-tv').classList.add('hidden');
-        document.getElementById('tab-archive').classList.add('hidden');
-
-        // הצגת הדף הנבחר
-        document.getElementById('tab-' + id).classList.remove('hidden');
-
-        // עדכון כפתור פעיל
-        const btns = document.querySelectorAll('.nav-btn');
-        btns.forEach(b => b.classList.remove('active'));
-        
-        // מוצא את הכפתור שנלחץ לפי הטקסט שלו או ה-onclick
-        event.currentTarget.classList.add('active');
+    function tab(name) {
+        // פונקציית מעבר דפים (שבלונה)
+        console.log("עובר לדף: " + name);
+        // בשלב הבא נוסיף כאן את התוכן לכל דף
     }
 </script>
 
