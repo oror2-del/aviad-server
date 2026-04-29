@@ -3,128 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAA365 PRO - SUPREME NETWORK</title>
+    <title>AAA365 PRO - MY DAILY TIP</title>
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;800&family=Oswald:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* פלטת צבעים: כחולים חדשניים לקפואים */
-            --bg-darkest: #010409;
-            --bg-deep-blue: #0a1931;
             --neon-blue: #00d2ff;
-            --electric-blue: #1e56a0;
-            --frozen-light: #e6f7ff;
             --led-white: #ffffff;
+            --bg-black: #050a0f;
             --win-green: #00ff88;
         }
 
         body {
-            font-family: 'Assistant', sans-serif;
-            background-color: var(--bg-darkest);
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--bg-black);
             color: white; margin: 0; padding: 0;
-            /* רקע דינמי המשלב שכבות: grid, מעבר צבעים, טקסטורה */
             background-image: 
-                /* שכבה 1: פסי LED קפואים בצדדים */
-                linear-gradient(90deg, rgba(0, 210, 255, 0.05) 0%, transparent 10%, transparent 90%, rgba(0, 210, 255, 0.05) 100%),
-                /* שכבה 2: Geometric Grid (רשת גיאומטרית) */
-                url('https://www.transparenttextures.com/patterns/hexellence.png'),
-                /* שכבה 3: מעבר צבעים כחול-כהה עמוק */
-                radial-gradient(circle at center, var(--bg-deep-blue) 0%, var(--bg-darkest) 100%);
+                radial-gradient(circle at top right, rgba(0, 210, 255, 0.08), transparent),
+                url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
             background-attachment: fixed;
-            overflow-x: hidden;
         }
 
-        /* אלמנטים גרפיים צפים ברקע (Watermarks) */
-        body::before {
-            content: "⚽"; /* אלמנט כדורגל מוזהב שקוף */
-            position: fixed; top: 15%; right: -5%;
-            font-size: 30vw; opacity: 0.02; z-index: -1;
-            filter: blur(5px) sepia(1) saturate(5);
-        }
-
-        body::after {
-            content: "🏀"; /* אלמנט כדורסל כחול שקוף */
-            position: fixed; bottom: 10%; left: -5%;
-            font-size: 25vw; opacity: 0.02; z-index: -1;
-            filter: blur(5px);
-        }
-
-        /* תפריט עליון - אולפן שידור */
+        /* תפריט אליפסות */
         .top-nav {
             position: sticky; top: 0; z-index: 1000;
-            background: rgba(1, 4, 9, 0.9); backdrop-filter: blur(20px);
-            border-bottom: 2px solid var(--electric-blue);
-            padding: 20px 10px; display: flex; justify-content: center; gap: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            background: rgba(5, 10, 15, 0.95); backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(0, 210, 255, 0.3);
+            padding: 20px 10px; display: flex; justify-content: center; gap: 10px;
         }
 
         .nav-btn {
-            background: transparent; color: white; border: 2px solid rgba(255,255,255,0.2);
-            padding: 12px 30px; border-radius: 50px; cursor: pointer; font-weight: 800;
-            transition: 0.3s; font-size: 1em; font-family: 'Assistant', sans-serif;
-            text-transform: uppercase; letter-spacing: 1px;
+            background: transparent; color: white; border: 2px solid var(--neon-blue);
+            padding: 10px 25px; border-radius: 50px; cursor: pointer; font-weight: 800; 
+            transition: 0.3s; font-size: 0.9em;
         }
 
-        .nav-btn.active { 
-            background: linear-gradient(135deg, var(--neon-blue) 0%, var(--electric-blue) 100%);
-            color: black; border-color: transparent;
-            box-shadow: 0 0 25px var(--neon-blue); 
-        }
+        .nav-btn.active { background: var(--neon-blue); color: black; box-shadow: 0 0 25px var(--neon-blue); }
 
-        /* לוגו הטיפ היומי שלי - מיתוג פרימיום */
-        .header-section { text-align: center; padding: 60px 20px 40px 20px; position: relative; }
-        
-        /* אפקט הילה מאחורי הלוגו */
-        .header-section::after {
-            content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 300px; height: 300px; background: var(--electric-blue);
-            filter: blur(100px); opacity: 0.3; z-index: -1;
-        }
-
+        /* כותרת חדשנית - הטיפ היומי שלי */
+        .header-section { text-align: center; padding: 40px 20px 20px 20px; }
         .main-logo {
-            font-family: 'Assistant', sans-serif; font-weight: 800; font-size: 5.5em;
-            letter-spacing: -3px; color: #fff;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 40px var(--neon-blue);
-            display: block; line-height: 0.9;
+            font-family: 'Assistant', sans-serif; font-weight: 800; font-size: 4em;
+            background: linear-gradient(to bottom, #fff 50%, #aaa 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            display: block; line-height: 1;
         }
-
         .logo-subtext {
-            font-family: 'Oswald', sans-serif; /* פונט ספורטיבי */
-            color: var(--neon-blue); font-size: 1.3em; letter-spacing: 12px;
-            text-transform: uppercase; margin-top: 15px; display: block; opacity: 0.9;
+            font-family: 'Oswald', sans-serif; color: var(--neon-blue);
+            font-size: 1.1em; letter-spacing: 8px; margin-top: 10px; display: block; opacity: 0.8;
         }
 
-        .container { max-width: 850px; margin: 0 auto; padding: 15px; padding-bottom: 100px; }
+        .container { max-width: 850px; margin: 0 auto; padding: 0 15px 120px 15px; }
 
-        /* שבלונת "הבטון" המנצחת (שדרוג ניאון) */
-        .game-card {
-            background: rgba(10, 25, 49, 0.8); /* רקע כחול עמוק שקוף */
-            border: 2px solid var(--electric-blue);
-            border-radius: 20px; padding: 30px;
+        /* כרטיסיית ה"בטון" - העתק מדויק מהתמונה */
+        .main-game-card {
+            background: rgba(10, 15, 20, 0.9);
+            border: 2px solid rgba(0, 210, 255, 0.3);
+            border-radius: 15px; padding: 25px;
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.15);
             display: flex; align-items: center; justify-content: space-between;
-            margin-bottom: 30px; position: relative;
-            box-shadow: 0 0 25px rgba(30, 86, 160, 0.2);
-            backdrop-filter: blur(10px);
+            margin-bottom: 25px;
         }
 
-        /* פס LED צדדי לקארד */
-        .game-card::before {
-            content: ''; position: absolute; left: 0; top: 15%; bottom: 15%; width: 5px;
-            background: var(--neon-blue); border-radius: 0 5px 5px 0;
-            box-shadow: 0 0 15px var(--neon-blue);
+        .game-card-left { display: flex; flex-direction: column; gap: 15px; align-items: flex-start; }
+        .copy-btn { background: #25D366; border: none; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+        .waiting-btn { background: #333; color: #888; padding: 5px 12px; border-radius: 5px; font-size: 0.8em; font-weight: bold; }
+
+        .game-card-center { flex-grow: 1; text-align: center; padding: 0 20px; }
+        .game-card-center small { color: var(--win-green); font-weight: bold; font-size: 0.8em; }
+        .game-card-center h3 { margin: 10px 0; font-size: 1.8em; font-weight: 900; }
+        .game-card-center p { margin: 5px 0; color: #aaa; font-size: 0.9em; }
+
+        /* הריבוע הזוהר הלבן מהתמונה */
+        .amount-box-glowing {
+            border: 2px solid var(--led-white); color: var(--led-white);
+            padding: 10px 18px; border-radius: 10px;
+            font-weight: 900; font-size: 1.4em;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+            min-width: 70px; text-align: center;
         }
 
-        .card-info { flex-grow: 1; text-align: center; }
-        .card-info h3 { margin: 10px 0; font-size: 2.2em; font-weight: 800; text-shadow: 0 0 10px rgba(255,255,255,0.3); }
-        .card-info p { color: var(--frozen-light); margin: 5px 0; font-size: 1em; }
-
-        /* הריבוע הזוהר הקטן - שדרוג יוקרה */
-        .amount-box {
-            border: 3px solid var(--frozen-light); color: var(--frozen-light);
-            padding: 15px 25px; border-radius: 15px; font-weight: 900; font-size: 1.8em;
-            box-shadow: 0 0 25px rgba(230, 247, 255, 0.5), inset 0 0 15px rgba(230, 247, 255, 0.2);
-            min-width: 90px; text-align: center;
-            background: rgba(230, 247, 255, 0.05);
-        }
+        .card-details { display: flex; flex-direction: column; gap: 5px; text-align: right; color: #666; font-size: 0.85em; }
 
         .hidden { display: none; }
     </style>
@@ -140,17 +98,28 @@
 
 <div class="header-section">
     <span class="main-logo">הטיפ היומי שלי</span>
-    <span class="logo-subtext">AAA365 PRO SYSTEM</span>
+    <span class="logo-subtext">AAA365 ALGORITHM</span>
 </div>
 
 <div class="container">
-    <div class="game-card">
-        <div style="font-size: 1.8em; opacity: 0.3;">💬</div>
-        <div class="card-info">
-            <h3 style="color: rgba(255,255,255,0.1);">ממתין להזנה...</h3>
-            <p>שעה: --:-- | יחס: --</p>
+    <div class="main-game-card">
+        <div class="game-card-left">
+            <button class="copy-btn">💬</button>
+            <div class="waiting-btn">ממתין...</div>
         </div>
-        <div class="amount-box" style="opacity: 0.1;">0</div>
+
+        <div class="game-card-center">
+            <small>(THE ANCHOR) עוגן 📍</small>
+            <h3 style="color: #444;">משחק טרם הוזן</h3>
+            <p>שריקת פתיחה: --:-- | משחק מספר --</p>
+            
+            <div class="card-details">
+                <div>סימון: -- ➔</div>
+                <div>יחס: -- 📈</div>
+            </div>
+        </div>
+
+        <div class="amount-box-glowing">0</div>
     </div>
 </div>
 
