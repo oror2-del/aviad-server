@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAA365 PRO - COMMAND CENTER</title>
+    <title>AAA365 PRO - MY DAILY TIP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --neon-blue: #00d2ff;
@@ -13,14 +14,14 @@
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-family: 'Assistant', sans-serif;
             background-color: var(--bg-black);
             color: white; margin: 0; padding: 0;
-            background-image: radial-gradient(circle at top right, rgba(0, 210, 255, 0.1), transparent);
+            background-image: radial-gradient(circle at top right, rgba(0, 210, 255, 0.08), transparent);
             background-attachment: fixed;
         }
 
-        /* תפריט עליון - אליפסות נקיות */
+        /* תפריט אליפסות קבוע */
         .top-nav {
             position: sticky; top: 0; z-index: 1000;
             background: rgba(5, 10, 15, 0.95); backdrop-filter: blur(15px);
@@ -31,51 +32,49 @@
         .nav-btn {
             background: transparent; color: white; border: 2px solid var(--neon-blue);
             padding: 10px 25px; border-radius: 50px; cursor: pointer; font-weight: 800; 
-            font-size: 0.9em;
+            transition: 0.3s; font-size: 0.9em;
         }
 
         .nav-btn.active { background: var(--neon-blue); color: black; box-shadow: 0 0 25px var(--neon-blue); }
 
-        /* כותרת חדשנית - הטיפ היומי שלי */
-        .header-main { text-align: center; padding: 40px 20px; }
-        .logo-text {
-            font-size: 3.5em; font-weight: 900; color: #fff;
-            text-shadow: 0 0 15px rgba(255,255,255,0.3);
-            display: block; margin-bottom: 5px;
+        /* לוגו הטיפ היומי שלי - עיצוב נקי וחדשני */
+        .header-section { text-align: center; padding: 50px 20px 30px 20px; }
+        .main-logo {
+            font-size: 4em; font-weight: 800; letter-spacing: -2px;
+            background: linear-gradient(to bottom, #fff 40%, #aaa 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            display: block; line-height: 1;
         }
-        .logo-sub { color: var(--neon-blue); letter-spacing: 5px; font-size: 1.1em; opacity: 0.8; }
+        .logo-subtext { color: var(--neon-blue); font-size: 1.1em; letter-spacing: 8px; margin-top: 10px; display: block; opacity: 0.8; }
 
-        .container { max-width: 850px; margin: 0 auto; padding: 0 15px 100px 15px; }
+        .container { max-width: 850px; margin: 0 auto; padding: 0 15px 120px 15px; }
 
-        /* כרטיסיית ה"בטון" המדויקת מהתמונה */
-        .game-card-main {
+        /* שבלונת ה"בטון" המנצחת - העתק מדויק מהתמונה */
+        .game-card {
             background: rgba(10, 15, 20, 0.95);
-            border: 2.5px solid var(--neon-blue);
+            border: 2px solid rgba(0, 210, 255, 0.3);
             border-radius: 15px; padding: 30px;
-            box-shadow: 0 0 30px rgba(0, 210, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.15);
             display: flex; align-items: center; justify-content: space-between;
-            margin-bottom: 30px; position: relative;
+            margin-bottom: 25px;
         }
 
-        .side-icons { display: flex; flex-direction: column; gap: 15px; align-items: flex-start; }
-        .wa-btn { background: #25D366; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2em; }
-        .status-tag { background: #222; color: #666; padding: 4px 10px; border-radius: 4px; font-size: 0.75em; font-weight: bold; }
+        .card-left { display: flex; flex-direction: column; gap: 15px; align-items: flex-start; }
+        .wa-icon { background: #25D366; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1em; }
+        .status-btn { background: #222; color: #555; padding: 5px 12px; border-radius: 5px; font-size: 0.8em; font-weight: bold; }
 
-        .game-info { flex-grow: 1; text-align: center; padding: 0 20px; }
-        .game-info small { color: var(--win-green); font-weight: bold; font-size: 0.9em; display: block; margin-bottom: 10px; }
-        .game-info h3 { margin: 0; font-size: 2em; font-weight: 900; letter-spacing: -1px; }
-        .game-info p { margin: 8px 0; color: #888; font-size: 0.95em; }
+        .card-info { flex-grow: 1; text-align: center; padding: 0 20px; }
+        .card-info small { color: var(--win-green); font-weight: bold; font-size: 0.8em; display: block; margin-bottom: 8px; }
+        .card-info h3 { margin: 0; font-size: 2em; font-weight: 800; }
+        .card-info p { margin: 5px 0; color: #888; font-size: 0.9em; }
 
-        .details-list { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; margin-top: 15px; }
-        .detail-item { color: #666; font-size: 0.9em; font-weight: bold; }
-
-        /* הריבוע הלבן הזוהר - הלב של העיצוב */
-        .glowing-square {
-            border: 3px solid #fff; color: #fff;
-            padding: 12px 20px; border-radius: 12px;
-            font-weight: 900; font-size: 1.6em;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            min-width: 80px; text-align: center;
+        /* הריבוע הלבן הזוהר המדויק */
+        .amount-box {
+            border: 2px solid var(--led-white); color: var(--led-white);
+            padding: 10px 18px; border-radius: 10px;
+            font-weight: 900; font-size: 1.5em;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+            min-width: 75px; text-align: center;
             background: rgba(255,255,255,0.05);
         }
 
@@ -91,30 +90,23 @@
     <button class="nav-btn">ארכיון</button>
 </div>
 
-<div class="header-main">
-    <span class="logo-text">הטיפ היומי שלי</span>
-    <span class="logo-sub">AAA365 ALGORITHM</span>
+<div class="header-section">
+    <span class="main-logo">הטיפ היומי שלי</span>
+    <span class="logo-subtext">AAA365 PRO SYSTEM</span>
 </div>
 
 <div class="container">
-    <div class="game-card-main">
-        <div class="side-icons">
-            <div class="wa-btn">💬</div>
-            <div class="status-tag">ממתין...</div>
+    <div class="game-card">
+        <div class="card-left">
+            <div class="wa-icon">💬</div>
+            <div class="status-btn">ממתין...</div>
         </div>
-
-        <div class="game-info">
+        <div class="card-info">
             <small>(THE ANCHOR) עוגן 📍</small>
-            <h3>בוסטון סלטיקס - פילדלפיה</h3>
-            <p>שריקת פתיחה: 02:30 | משחק מספר 5</p>
-            
-            <div class="details-list">
-                <div class="detail-item">סימון: 1- (8.5-) ➔</div>
-                <div class="detail-item">יחס: 1.65 📈</div>
-            </div>
+            <h3>משחק טרם הוזן</h3>
+            <p>שריקת פתיחה: --:-- | יחס: --</p>
         </div>
-
-        <div class="glowing-square">143</div>
+        <div class="amount-box">0</div>
     </div>
 </div>
 
